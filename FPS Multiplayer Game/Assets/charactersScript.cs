@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class characters : MonoBehaviour {
+public class charactersScript : MonoBehaviour {
 
     public Character soldier = new Character()
     {
         name = "Soldier",
-        moveSpeed = 12,
+        moveSpeed = 10,
         jumpForce = 12,
         mass = 12
     };

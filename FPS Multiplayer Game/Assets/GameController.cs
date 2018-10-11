@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         timeLeft = 600;
+       
 	}
 	
 	// Update is called once per frame
