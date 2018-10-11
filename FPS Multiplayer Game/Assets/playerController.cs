@@ -8,6 +8,9 @@ public class playerController : MonoBehaviour {
     public float moveSpeed; 
     //A rigid body is the component on which physics calculations can be done.
     Rigidbody rb;
+    GameObject gameController = GameObject.Find("Game Controller");
+    charactersScript chars = gameController.GetComponent<charactersScript>;
+    public chars.Character currentCharacter;
 
 	// Use this for initialization
 	void Start () {
