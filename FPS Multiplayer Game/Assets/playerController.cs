@@ -11,6 +11,7 @@ public class playerController : MonoBehaviour {
     GameObject gameController;
     CharactersScript chars;
     public Character currentCharacter;
+    public float camSens;
     
 	// Use this for initialization
 	void Start () {
@@ -65,6 +66,10 @@ public class playerController : MonoBehaviour {
 
         if (Input.GetKeyDown("r"))
             currentCharacter.weapon.reload();
+
+        float xRot = Input.GetAxis("Mouse X") * camSens;
+
+        rb.transform.eulerAngles += new Vector3(0,xRot,0);
 
 
 

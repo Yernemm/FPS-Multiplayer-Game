@@ -467,6 +467,11 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114618126303909214, guid: bc8ad72b255d74e43892cfc5cbf7f9fb,
+        type: 2}
+      propertyPath: camSens
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc8ad72b255d74e43892cfc5cbf7f9fb, type: 2}
   m_IsPrefabAsset: 0
