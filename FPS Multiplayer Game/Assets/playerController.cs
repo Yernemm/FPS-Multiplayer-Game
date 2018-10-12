@@ -9,14 +9,14 @@ public class playerController : MonoBehaviour {
     //A rigid body is the component on which physics calculations can be done.
     Rigidbody rb;
     GameObject gameController;
-    charactersScript chars;
+    CharactersScript chars;
     public Character currentCharacter;
     
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
         gameController = GameObject.Find("Game Controller");
-        chars = gameController.GetComponent<charactersScript>();
+        chars = gameController.GetComponent<CharactersScript>();
 
         currentCharacter = chars.soldier;
         moveSpeed = currentCharacter.moveSpeed;
@@ -41,22 +41,34 @@ public class playerController : MonoBehaviour {
             //This is multiplied here to prevent the player from moving faster at higher framerates.
             //It ensures a constant move speed regardless of framerate.
             //velocity.z -= moveSpeed * Time.deltaTime;
-            z -= moveSpeed * Time.deltaTime;
+            z += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey("s"))
-            z += moveSpeed * Time.deltaTime;
+            z -= moveSpeed * Time.deltaTime;
         if (Input.GetKey("d"))
-            x -= moveSpeed * Time.deltaTime;
-        if (Input.GetKey("a"))
             x += moveSpeed * Time.deltaTime;
+        if (Input.GetKey("a"))
+            x -= moveSpeed * Time.deltaTime;
 
-        transform.Translate(x, 0, z);
-        
+        Vector3 translation = new Vector3(x, 0, z);
+        transform.Translate(Vector3.ClampMagnitude(translation, moveSpeed * Time.deltaTime));
 
 
-        
+        if (Input.GetMouseButton(0))
+            currentCharacter.weapon.shoot(rb);
 
-        //The player's velocity is set to the final calculated velocity.
-        rb.velocity = velocity;
+        if (Input.GetKeyDown("q") && currentCharacter.ability1.offCooldown)
+            currentCharacter.ability1.use(rb);
+
+        if (Input.GetKeyDown("e") && currentCharacter.ability2.offCooldown)
+            currentCharacter.ability2.use(rb);
+
+        if (Input.GetKeyDown("r"))
+            currentCharacter.weapon.reload();
+
+
+
+            //The player's velocity is set to the final calculated velocity.
+            rb.velocity = Vector3.ClampMagnitude(velocity, moveSpeed * Time.deltaTime);
         }
 }

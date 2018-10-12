@@ -459,6 +459,14 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4135703099564728, guid: bc8ad72b255d74e43892cfc5cbf7f9fb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135703099564728, guid: bc8ad72b255d74e43892cfc5cbf7f9fb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc8ad72b255d74e43892cfc5cbf7f9fb, type: 2}
   m_IsPrefabAsset: 0
@@ -628,6 +636,8 @@ GameObject:
   - component: {fileID: 2136962818}
   - component: {fileID: 2136962817}
   - component: {fileID: 2136962816}
+  - component: {fileID: 2136962819}
+  - component: {fileID: 2136962820}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -671,3 +681,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2136962819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136962815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196669d9653f6b5438f1b99634db706e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2136962820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136962815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6653c46419eaeff438c6edf34009cc3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
