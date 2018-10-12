@@ -55,8 +55,6 @@ public class playerController : MonoBehaviour {
         transform.Translate(Vector3.ClampMagnitude(translation, moveSpeed * Time.deltaTime));
 
 
-        if (Input.GetMouseButton(0))
-            currentCharacter.weapon.shoot(rb);
 
         if (Input.GetKeyDown("q") && currentCharacter.ability1.offCooldown)
             currentCharacter.ability1.use(rb);
