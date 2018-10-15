@@ -65,13 +65,21 @@ public class playerController : MonoBehaviour {
         if (Input.GetKeyDown("r"))
             currentCharacter.weapon.reload();
 
+        float jumpV = 0;
+        if(Input.GetKeyDown("space"))
+        {
+            if (Physics.Raycast(rb.transform.position, Vector3.down, (GetComponent<Collider>().bounds.size.y / 2) + 0.1f))
+                jumpV = currentCharacter.jumpForce;
+            
+        }
+
         float xRot = Input.GetAxis("Mouse X") * camSens;
 
         rb.transform.eulerAngles += new Vector3(0,xRot,0);
 
 
-
-            //The player's velocity is set to the final calculated velocity.
-            rb.velocity = Vector3.ClampMagnitude(velocity, moveSpeed * Time.deltaTime);
+        Vector3 planeV = Vector3.ClampMagnitude(new Vector3(velocity.x, 0, velocity.z), moveSpeed * Time.deltaTime);
+        //The player's velocity is set to the final calculated velocity.
+        rb.velocity = new Vector3(planeV.x, rb.velocity.y + jumpV, planeV.z);
         }
 }

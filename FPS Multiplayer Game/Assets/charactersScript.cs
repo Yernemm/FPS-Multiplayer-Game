@@ -10,8 +10,8 @@ public class CharactersScript : MonoBehaviour {
     {
         name = "Soldier",
         moveSpeed = 10,
-        jumpForce = 12,
-        mass = 12
+        jumpForce = 3,
+        mass = 120
     };
 
     private void Start()
