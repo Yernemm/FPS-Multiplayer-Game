@@ -11,8 +11,10 @@ public class WeaponsScript : MonoBehaviour {
         Debug.Log("It has been shot");
         //Vector3 lookAt = new Vector3()
         Debug.DrawLine(tr.position, new Vector3(0, 0, 0), Color.red, 1000,true);
-        GameObject bullet = Instantiate(debugBullet,tr);
-        bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * 50f;
+        GameObject bullet = Instantiate(debugBullet, GameObject.Find("Main Camera").GetComponent<Transform>().transform);
+        bullet.transform.parent = null;
+        bullet.GetComponent<Rigidbody>().velocity = GameObject.Find("Main Camera").GetComponent<Transform>().transform.forward * 150f;
+        //Debug.Log(Camera.main.transform.forward.normalized);
         bullet.transform.parent = null;
         
 
