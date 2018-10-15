@@ -19,7 +19,7 @@ public class playerController : MonoBehaviour {
         gameController = GameObject.Find("Game Controller");
         chars = gameController.GetComponent<CharactersScript>();
 
-        currentCharacter = chars.soldier;
+        currentCharacter = chars.debug;
         moveSpeed = currentCharacter.moveSpeed;
         Debug.Log(moveSpeed);
 	}

@@ -15,7 +15,7 @@ public class cameraScript : MonoBehaviour {
 	void Start () {
         player = GameObject.Find("Player");
         posOffset = new Vector3(0, 1, 0);
-        GameObject.Find("Player").GetComponent<MeshRenderer>().enabled = false;
+      //  GameObject.Find("Player").GetComponent<MeshRenderer>().enabled = false;
     }
 	
 	// Update is called once per frame

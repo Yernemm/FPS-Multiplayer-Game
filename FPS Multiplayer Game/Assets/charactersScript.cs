@@ -6,9 +6,9 @@ public class CharactersScript : MonoBehaviour {
 
     WeaponsScript wp;
 
-    public Character soldier = new Character()
+    public Character debug = new Character()
     {
-        name = "Soldier",
+        name = "Debug",
         moveSpeed = 10,
         jumpForce = 4,
         mass = 60
@@ -18,7 +18,7 @@ public class CharactersScript : MonoBehaviour {
     {
         wp = GetComponent<WeaponsScript>();
 
-        soldier.weapon = wp.mainGun;
+        debug.weapon = wp.debugGun;
     }
 
 
