@@ -42,6 +42,7 @@ public class playerController : MonoBehaviour {
             //This is multiplied here to prevent the player from moving faster at higher framerates.
             //It ensures a constant move speed regardless of framerate.
             //velocity.z -= moveSpeed * Time.deltaTime;
+            Debug.Log("MovingForward");
             z += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey("s"))

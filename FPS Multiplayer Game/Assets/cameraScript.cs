@@ -13,6 +13,7 @@ public class cameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.Find("Player");
         posOffset = new Vector3(0, 1, 0);
       //  GameObject.Find("Player").GetComponent<MeshRenderer>().enabled = false;
