@@ -24,8 +24,8 @@ public class cameraScript : MonoBehaviour {
         //Look at the player every frame.
         //transform.LookAt(player.transform);
         float yRot = Input.GetAxis("Mouse Y") * GameObject.Find("Player").GetComponent<playerController>().camSens;
-        if (yRot > 0)
-            Debug.Log(yRot);
+       // if (yRot > 0)
+           // Debug.Log(yRot);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, player.transform.eulerAngles.y, player.transform.eulerAngles.z);
         transform.eulerAngles -= new Vector3(yRot,0, 0);
 

@@ -12,7 +12,7 @@ public class WeaponsScript : MonoBehaviour {
     public bool shootGun(Transform tr)
     {
         //Draw line here for debug
-        Debug.Log("It has been shot");
+       // Debug.Log("It has been shot");
         //Vector3 lookAt = new Vector3()
         Debug.DrawLine(tr.position, new Vector3(0, 0, 0), Color.red, 1000, true);
 
@@ -23,10 +23,11 @@ public class WeaponsScript : MonoBehaviour {
             //GameObject bullet = Instantiate(debugBullet, GameObject.Find("Main Camera").GetComponent<Transform>().transform);
 
             Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-            Vector3 spawnPos = new Vector3(camera.pixelWidth, camera.pixelHeight, camera.nearClipPlane);
+            Vector3 spawnPos = new Vector3(Screen.width / 2, Screen.height /2 , 0);
             Transform spawnLocation = camera.transform;
             spawnLocation.position = camera.ScreenToWorldPoint(spawnPos);
             GameObject bullet = Instantiate(debugBullet, spawnLocation);
+            Debug.Log(Screen.width + " " + Screen.height);
         bullet.transform.parent = null;
         bullet.GetComponent<Rigidbody>().velocity = GameObject.Find("Main Camera").GetComponent<Transform>().transform.forward * 50f;
         //Debug.Log(Camera.main.transform.forward.normalized);
