@@ -20,7 +20,13 @@ public class WeaponsScript : MonoBehaviour {
         double time = GameObject.Find("Game Controller").GetComponent<GameController>().time;
         if (lastFired <= time - debugGun.fireInterval()) {
             lastFired = time;
-            GameObject bullet = Instantiate(debugBullet, GameObject.Find("Main Camera").GetComponent<Transform>().transform);
+            //GameObject bullet = Instantiate(debugBullet, GameObject.Find("Main Camera").GetComponent<Transform>().transform);
+
+            Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            Vector3 spawnPos = new Vector3(camera.pixelWidth, camera.pixelHeight, camera.nearClipPlane);
+            Transform spawnLocation = camera.transform;
+            spawnLocation.position = camera.ScreenToWorldPoint(spawnPos);
+            GameObject bullet = Instantiate(debugBullet, spawnLocation);
         bullet.transform.parent = null;
         bullet.GetComponent<Rigidbody>().velocity = GameObject.Find("Main Camera").GetComponent<Transform>().transform.forward * 50f;
         //Debug.Log(Camera.main.transform.forward.normalized);
