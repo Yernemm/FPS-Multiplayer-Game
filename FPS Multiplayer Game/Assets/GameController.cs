@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
     public double timeLeft;
+    public double time;
     public UnityEngine.UI.Text timeLeftText;
 
 	// Use this for initialization
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        time += Time.deltaTime;
         timeLeft -= Time.deltaTime;
         timeLeftText.text = "Time Left: " + Mathf.Floor((float)timeLeft);
         
