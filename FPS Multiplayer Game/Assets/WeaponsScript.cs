@@ -14,7 +14,7 @@ public class WeaponsScript : MonoBehaviour {
         //Draw line here for debug
        // Debug.Log("It has been shot");
         //Vector3 lookAt = new Vector3()
-        Debug.DrawLine(tr.position, new Vector3(0, 0, 0), Color.red, 1000, true);
+        //Debug.DrawLine(tr.position, new Vector3(0, 0, 0), Color.red, 1000, true);
 
         // Debug.Log("TIME: " + GameObject.Find("Game Controller").GetComponent<GameController>().time);
         double time = GameObject.Find("Game Controller").GetComponent<GameController>().time;
