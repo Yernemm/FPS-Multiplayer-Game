@@ -25,9 +25,12 @@ public class WeaponsScript : MonoBehaviour {
             Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
             Vector3 spawnPos = new Vector3(Screen.width / 2, Screen.height /2 , 0);
             Transform spawnLocation = camera.transform;
-            spawnLocation.position = camera.ScreenToWorldPoint(spawnPos);
-            GameObject bullet = Instantiate(debugBullet, spawnLocation);
-            Debug.Log(Screen.width + " " + Screen.height);
+            spawnLocation.position = camera.transform.position ;
+            GameObject bullet = Instantiate(debugBullet);
+            bullet.transform.position = spawnLocation.position;
+
+
+            Debug.Log(Screen.width + " " + Screen.height + " " + camera.transform.position + " " + spawnLocation.position + " " + bullet.transform.position);
         bullet.transform.parent = null;
         bullet.GetComponent<Rigidbody>().velocity = GameObject.Find("Main Camera").GetComponent<Transform>().transform.forward * 50f;
         //Debug.Log(Camera.main.transform.forward.normalized);

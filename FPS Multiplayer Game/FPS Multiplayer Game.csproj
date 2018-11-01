@@ -308,6 +308,7 @@
     <Compile Include="Assets\AbilitiesScript.cs" />
     <Compile Include="Assets\cameraScript.cs" />
     <Compile Include="Assets\CharactersScript.cs" />
+    <Compile Include="Assets\CollisionIgnore.cs" />
     <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\playerController.cs" />
     <Compile Include="Assets\WeaponsScript.cs" />

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23235751612121448}
   - component: {fileID: 135788306535699904}
   - component: {fileID: 54043059790395268}
+  - component: {fileID: 114334631942768788}
   m_Layer: 0
   m_Name: DebugBullet
   m_TagString: Untagged
@@ -100,6 +101,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &114334631942768788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777974387724376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64af4c63043727d4b8b63aab6539b235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: Player
 --- !u!135 &135788306535699904
 SphereCollider:
   m_ObjectHideFlags: 1
