@@ -5,10 +5,11 @@ using UnityEngine;
 public class CharactersScript : MonoBehaviour {
 
     WeaponsScript wp;
+    AbilitiesScript ab;
 
     public Character debug = new Character()
     {
-        name = "Debug",
+        name = "Debug Character",
         moveSpeed = 10,
         jumpForce = 4,
         mass = 60
@@ -17,8 +18,10 @@ public class CharactersScript : MonoBehaviour {
     private void Start()
     {
         wp = GetComponent<WeaponsScript>();
-
+        ab = GetComponent<AbilitiesScript>();
         debug.weapon = wp.debugGun;
+        debug.ability1 = ab.dash;
+        debug.ability2 = ab.dash;
     }
 
 

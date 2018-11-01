@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour {
     CharactersScript chars;
     public Character currentCharacter;
     public float camSens;
+    bool debugMode = true;
     
 	// Use this for initialization
 	void Start () {
@@ -42,7 +43,7 @@ public class playerController : MonoBehaviour {
             //This is multiplied here to prevent the player from moving faster at higher framerates.
             //It ensures a constant move speed regardless of framerate.
             //velocity.z -= moveSpeed * Time.deltaTime;
-            Debug.Log("MovingForward");
+            //Debug.Log("MovingForward");
             z += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey("s"))
@@ -54,11 +55,15 @@ public class playerController : MonoBehaviour {
 
         Vector3 translation = new Vector3(x, 0, z);
         transform.Translate(Vector3.ClampMagnitude(translation, moveSpeed * Time.deltaTime));
+        Vector3 worldDirection = transform.TransformDirection(new Vector3(x,0,z));
 
 
-
-        if (Input.GetKeyDown("q") && currentCharacter.ability1.offCooldown)
+        if (Input.GetKeyDown("q"))
+        {
+            Debug.Log("before using");
+            Debug.Log(currentCharacter.name);
             currentCharacter.ability1.use(rb);
+        }
 
         if (Input.GetKeyDown("e") && currentCharacter.ability2.offCooldown)
             currentCharacter.ability2.use(rb);
@@ -79,8 +84,20 @@ public class playerController : MonoBehaviour {
         rb.transform.eulerAngles += new Vector3(0,xRot,0);
 
 
-        Vector3 planeV = Vector3.ClampMagnitude(new Vector3(velocity.x, 0, velocity.z), moveSpeed * Time.deltaTime);
+        Vector3 planeV = Vector3.ClampMagnitude(new Vector3(velocity.x, 0, velocity.z), moveSpeed);
         //The player's velocity is set to the final calculated velocity.
-        rb.velocity = new Vector3(planeV.x, rb.velocity.y + jumpV, planeV.z);
+        rb.velocity = new Vector3(worldDirection.x + rb.velocity.x, rb.velocity.y + jumpV, worldDirection.z + rb.velocity.z);
+
+        if (debugMode)
+        {
+            if (Input.GetKeyDown("p"))
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+                rb.position = new Vector3(0, 2, 0);
+            }
         }
+
+        }
+
+    
 }

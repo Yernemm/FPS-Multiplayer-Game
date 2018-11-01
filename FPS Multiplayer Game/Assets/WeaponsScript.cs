@@ -9,7 +9,7 @@ public class WeaponsScript : MonoBehaviour {
 
 
 
-    public bool shootGun(Transform tr)
+    public bool shootDebugGun(Transform tr)
     {
         //Draw line here for debug
        // Debug.Log("It has been shot");
@@ -49,7 +49,7 @@ public class WeaponsScript : MonoBehaviour {
 
     void Start()
     {
-        debugGun.shoot = shootGun;
+        debugGun.shoot = shootDebugGun;
         time = GameObject.Find("Game Controller").GetComponent<GameController>().time;
 
     }
