@@ -10,7 +10,7 @@ public class CharactersScript : MonoBehaviour {
     public Character debug = new Character()
     {
         name = "Debug Character",
-        moveSpeed = 10,
+        moveSpeed = 15,
         jumpForce = 4,
         mass = 60
     };

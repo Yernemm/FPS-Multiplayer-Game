@@ -55,7 +55,7 @@ public class playerController : MonoBehaviour {
 
         Vector3 translation = new Vector3(x, 0, z);
         transform.Translate(Vector3.ClampMagnitude(translation, moveSpeed * Time.deltaTime));
-        Vector3 worldDirection = transform.TransformDirection(new Vector3(x,0,z));
+        Vector3 worldDirection = transform.TransformDirection(new Vector3(x,0,z ));
 
 
         if (Input.GetKeyDown("q"))
@@ -95,9 +95,22 @@ public class playerController : MonoBehaviour {
                 rb.velocity = new Vector3(0, 0, 0);
                 rb.position = new Vector3(0, 2, 0);
             }
+            float sp = rb.velocity.magnitude;
+            if (sp < 0.01)
+                sp = 0;
+            gameController.GetComponent<GameController>().addDebugText("Speed: " + sp);
         }
 
         }
 
-    
+    private void FixedUpdate()
+    {
+        float dragMultiplier = 0.95f;
+        Vector3 velocity = rb.velocity;
+        velocity.x *= dragMultiplier;
+        velocity.z *= dragMultiplier;
+        rb.velocity = velocity;
+    }
+
+
 }

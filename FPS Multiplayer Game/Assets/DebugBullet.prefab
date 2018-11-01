@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135788306535699904}
   - component: {fileID: 54043059790395268}
   - component: {fileID: 114334631942768788}
+  - component: {fileID: 114834210187374128}
   m_Layer: 0
   m_Name: DebugBullet
   m_TagString: Untagged
@@ -38,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1777974387724376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.21, y: 0.36, z: -1.43}
-  m_LocalScale: {x: 0.3167, y: 0.3167, z: 0.3167}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,6 +114,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tag: Player
+--- !u!114 &114834210187374128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777974387724376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b346b743f8e3245a5e35e137886df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 10
 --- !u!135 &135788306535699904
 SphereCollider:
   m_ObjectHideFlags: 1

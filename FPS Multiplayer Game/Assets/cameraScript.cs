@@ -16,7 +16,10 @@ public class cameraScript : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.Find("Player");
         posOffset = new Vector3(0, 1, 0);
-      //  GameObject.Find("Player").GetComponent<MeshRenderer>().enabled = false;
+       foreach(Transform g in GameObject.Find("Player").transform)
+        {
+            g.GetComponent<MeshRenderer>().enabled = false;
+        }
     }
 	
 	// Update is called once per frame

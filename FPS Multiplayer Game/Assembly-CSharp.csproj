@@ -67,6 +67,7 @@
     <Compile Include="Assets\CollisionIgnore.cs" />
     <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\playerController.cs" />
+    <Compile Include="Assets\SelfKill.cs" />
     <Compile Include="Assets\WeaponsScript.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/BkLap/Documents/GitHub/FPS-Multiplayer-Game/FPS Multiplayer Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
