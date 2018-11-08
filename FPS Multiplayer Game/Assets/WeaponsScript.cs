@@ -8,11 +8,12 @@ public class WeaponsScript : MonoBehaviour {
     public GameObject debugBullet;
     public UIScript ui;
 
-    
- 
+
+
 
     public bool shootDebugGun(Transform tr)
     {
+
         //Draw line here for debug
        // Debug.Log("It has been shot");
         //Vector3 lookAt = new Vector3()
@@ -45,11 +46,18 @@ public class WeaponsScript : MonoBehaviour {
 
         
     }
+    public bool reloadDebug()
+    {
+        debugGun.ammoCurrent = debugGun.ammoMax;
+        return true;
+        
+    }
 
     public Weapon debugGun = new Weapon(20)
     {
         name = "Debug Gun",
-        fireRate = 5
+        fireRate = 5,
+        reloadTime = 1
     };
 
     public Weapon debugHitscan = new Weapon(60)
@@ -61,6 +69,7 @@ public class WeaponsScript : MonoBehaviour {
     void Start()
     {
         debugGun.shootCode = shootDebugGun;
+        debugGun.reload = reloadDebug;
         time = GameObject.Find("Game Controller").GetComponent<GameController>().time;
         ui = GetComponent<UIScript>();
     }
@@ -90,6 +99,7 @@ public class Weapon
     }
     public delegate bool reloadDelegate();
     public reloadDelegate reload;
+    public double reloadTime;
     public double fireRate;
     public Weapon(int ammoMaxInput)
     {

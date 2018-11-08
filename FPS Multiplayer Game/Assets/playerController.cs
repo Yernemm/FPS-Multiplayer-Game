@@ -13,9 +13,11 @@ public class playerController : MonoBehaviour {
     public Character currentCharacter;
     public float camSens;
     bool debugMode = true;
-    
-	// Use this for initialization
-	void Start () {
+    UIScript ui;
+
+    // Use this for initialization
+    void Start () {
+        ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
         rb = GetComponent<Rigidbody>();
         gameController = GameObject.Find("Game Controller");
         chars = gameController.GetComponent<CharactersScript>();
@@ -101,6 +103,8 @@ public class playerController : MonoBehaviour {
             gameController.GetComponent<GameController>().addDebugText("Speed: " + sp);
         }
 
+
+        ui.updateAmmo(currentCharacter.weapon.ammoCurrent, currentCharacter.weapon.ammoMax);
         }
 
     private void FixedUpdate()
