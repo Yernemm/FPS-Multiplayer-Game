@@ -9,10 +9,11 @@ public class cameraScript : MonoBehaviour {
    // public Rigidbody player;
     Vector3 posOffset;
     GameObject player;
-    
+    UIScript ui;    
 
 	// Use this for initialization
 	void Start () {
+        ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
         Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.Find("Player");
         posOffset = new Vector3(0, 1, 0);
@@ -34,8 +35,12 @@ public class cameraScript : MonoBehaviour {
 
 
         if (Input.GetMouseButton(0))
-            player.GetComponent<playerController>().currentCharacter.weapon.shoot(transform);
-
+        {
+            Character ch = player.GetComponent<playerController>().currentCharacter;
+            ch.weapon.shoot(transform);
+            ui.updateAmmo(ch.weapon.ammoCurrent, ch.weapon.ammoMax);
+            
+        }
     }
 
     private void LateUpdate()

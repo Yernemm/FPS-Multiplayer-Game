@@ -622,11 +622,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224379762558508468, guid: c388e64397ca8694cb85998b6e416f31,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -2.2000122
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c388e64397ca8694cb85998b6e416f31, type: 2}
   m_IsPrefabAsset: 0
@@ -1074,6 +1069,7 @@ GameObject:
   - component: {fileID: 2136962816}
   - component: {fileID: 2136962819}
   - component: {fileID: 2136962820}
+  - component: {fileID: 2136962821}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -1105,8 +1101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLeft: 0
   time: 0
-  timeLeftText: {fileID: 0}
-  debugTextUI: {fileID: 0}
   debugText: 
 --- !u!4 &2136962818
 Transform:
@@ -1145,3 +1139,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6653c46419eaeff438c6edf34009cc3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2136962821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136962815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0a242ec1a71914487ecc80c0d5a08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
+  timeLeftText: {fileID: 0}
+  debugTextUI: {fileID: 0}
