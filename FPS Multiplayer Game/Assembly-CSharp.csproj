@@ -61,15 +61,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AbilitiesScript.cs" />
-    <Compile Include="Assets\cameraScript.cs" />
-    <Compile Include="Assets\CharactersScript.cs" />
-    <Compile Include="Assets\CollisionIgnore.cs" />
-    <Compile Include="Assets\GameController.cs" />
-    <Compile Include="Assets\playerController.cs" />
-    <Compile Include="Assets\SelfKill.cs" />
-    <Compile Include="Assets\UIScript.cs" />
-    <Compile Include="Assets\WeaponsScript.cs" />
+    <Compile Include="Assets\Scripts\AbilitiesScript.cs" />
+    <Compile Include="Assets\Scripts\cameraScript.cs" />
+    <Compile Include="Assets\Scripts\CharactersScript.cs" />
+    <Compile Include="Assets\Scripts\CollisionIgnore.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\playerController.cs" />
+    <Compile Include="Assets\Scripts\SelfKill.cs" />
+    <Compile Include="Assets\Scripts\UIScript.cs" />
+    <Compile Include="Assets\Scripts\WeaponsScript.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/BkLap/Documents/GitHub/FPS-Multiplayer-Game/FPS Multiplayer Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
