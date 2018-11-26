@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Menus\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\AbilitiesScript.cs" />
     <Compile Include="Assets\Scripts\cameraScript.cs" />
     <Compile Include="Assets\Scripts\CharactersScript.cs" />
