@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54043059790395268}
   - component: {fileID: 114334631942768788}
   - component: {fileID: 114834210187374128}
+  - component: {fileID: 114676401255695342}
   m_Layer: 0
   m_Name: DebugBullet
   m_TagString: Untagged
@@ -114,6 +115,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tag: Player
+--- !u!114 &114676401255695342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777974387724376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 100
+    i1: 179
+    i2: 205
+    i3: 37
+    i4: 153
+    i5: 62
+    i6: 118
+    i7: 84
+    i8: 9
+    i9: 106
+    i10: 68
+    i11: 118
+    i12: 59
+    i13: 100
+    i14: 217
+    i15: 158
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114834210187374128
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -219,7 +219,7 @@ MonoBehaviour:
     i14: 88
     i15: 233
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114722990405326424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camSens: 3
+  localPlayer: 0
 --- !u!136 &136925645438337648
 CapsuleCollider:
   m_ObjectHideFlags: 1

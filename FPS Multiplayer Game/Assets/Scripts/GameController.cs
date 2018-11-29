@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class GameController : MonoBehaviour {
 
@@ -19,8 +20,13 @@ public class GameController : MonoBehaviour {
 	void Start () {
         uiScript = GetComponent<UIScript>();
         timeLeft = 600;
-       
-	}
+
+        NetworkClient myClient;
+        myClient = new NetworkClient();
+        myClient.RegisterHandler(MsgType.Connect, OnConnected);
+        myClient.Connect("127.0.0.1", 4444);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,5 +40,10 @@ public class GameController : MonoBehaviour {
     private void LateUpdate()
     {
         debugText = "";
+    }
+
+    public void OnConnected(NetworkMessage netMsg)
+    {
+        Debug.Log("Connected to server");
     }
 }

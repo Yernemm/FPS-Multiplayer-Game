@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class WeaponsScript : MonoBehaviour {
     double lastFired = 0;
@@ -39,6 +40,7 @@ public class WeaponsScript : MonoBehaviour {
             bullet.GetComponent<Rigidbody>().velocity = GameObject.Find("Main Camera").GetComponent<Transform>().transform.forward * 50f;
             //Debug.Log(Camera.main.transform.forward.normalized);
             bullet.transform.parent = null;
+            NetworkServer.Spawn(bullet);
             return true;
         }
         else

@@ -15,11 +15,24 @@ public class cameraScript : MonoBehaviour {
 	void Start () {
         ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
         //Cursor.lockState = CursorLockMode.Locked;
-        player = GameObject.Find("Player");
+
+        initPlayerCamera();
+   
         posOffset = new Vector3(0, 1, 0);
-       foreach(Transform g in GameObject.Find("Player").transform)
+       foreach(Transform g in player.transform)
         {
             g.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+    public void initPlayerCamera()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject p in players)
+        {
+            if (p.GetComponent<playerController>().localPlayer)
+            {
+                player = p;
+            }
         }
     }
 	
@@ -27,7 +40,7 @@ public class cameraScript : MonoBehaviour {
 	void Update () {
         //Look at the player every frame.
         //transform.LookAt(player.transform);
-        float yRot = Input.GetAxis("Mouse Y") * GameObject.Find("Player").GetComponent<playerController>().camSens;
+        float yRot = Input.GetAxis("Mouse Y") * player.GetComponent<playerController>().camSens;
        // if (yRot > 0)
            // Debug.Log(yRot);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, player.transform.eulerAngles.y, player.transform.eulerAngles.z);

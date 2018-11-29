@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class playerController : MonoBehaviour {
+public class playerController : NetworkBehaviour {
     //Public float which controls the move speed.
     //It is public so it can be edited from Unity itself.
     float moveSpeed; 
@@ -12,11 +13,18 @@ public class playerController : MonoBehaviour {
     CharactersScript chars;
     public Character currentCharacter;
     public float camSens;
+    public bool localPlayer;
     bool debugMode = true;
     UIScript ui;
 
     // Use this for initialization
     void Start () {
+       // GameObject.Find("Main Camera").GetComponent<cameraScript>().initPlayerCamera();
+        localPlayer = isLocalPlayer;
+       // if (!isLocalPlayer)
+       // {
+       //     return;
+      //  }
         ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
         rb = GetComponent<Rigidbody>();
         gameController = GameObject.Find("Game Controller");
