@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class WeaponsScript : MonoBehaviour {
+public class WeaponsScript : NetworkBehaviour {
     double lastFired = 0;
     double time;
     public GameObject debugBullet;

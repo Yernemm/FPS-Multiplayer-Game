@@ -10,6 +10,8 @@ public class playerController : NetworkBehaviour {
     //A rigid body is the component on which physics calculations can be done.
     Rigidbody rb;
     GameObject gameController;
+    [SerializeField]
+    GameObject playerCamera;
     CharactersScript chars;
     public Character currentCharacter;
     public float camSens;
@@ -19,7 +21,12 @@ public class playerController : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-       // GameObject.Find("Main Camera").GetComponent<cameraScript>().initPlayerCamera();
+        if (!isLocalPlayer)
+        {
+            playerCamera.SetActive(false);
+            return;
+        }
+        // GameObject.Find("Main Camera").GetComponent<cameraScript>().initPlayerCamera();
         localPlayer = isLocalPlayer;
        // if (!isLocalPlayer)
        // {
@@ -37,6 +44,8 @@ public class playerController : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!isLocalPlayer)
+            return;
 
         //Create a copy of the player's velocity vector.
         Vector3 velocity = rb.velocity;
