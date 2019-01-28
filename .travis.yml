@@ -9,3 +9,5 @@ install:
 - ./Scripts/install.sh
 script:
 - ./Scripts/build.sh
+after_failure:
+  - cat unity.log
