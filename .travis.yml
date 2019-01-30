@@ -10,5 +10,5 @@ install:
 script:
 - ./Scripts/build.sh
 after_failure:
-  - echo "Fail log: "
-  - cat unity.log
+- echo "Fail log: "
+- cat unity.log
