@@ -2,16 +2,6 @@
 
 project="FPS-Multiplayer-Game"
 
-echo "Attempting to build $project for Windows"
-/Applications/Unity/Unity.app/Contents/MacOS/Unity 
-  -batchmode 
-  -nographics 
-  -silent-crashes 
-  -logFile $(pwd)/unity.log 
-  -projectPath $(pwd)/FPS Multiplayer Game 
-  -buildWindowsPlayer "$(pwd)/Build/windows/$project.exe" 
-  -quit
-
 echo "Attempting to build $project for OS X"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity 
   -batchmode 
