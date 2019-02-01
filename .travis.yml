@@ -1,28 +1,14 @@
 language: objective-c
-osx_image: xcode9.2
+osx_image: xcode8.1
 rvm:
-- 2.2         #see before_install for getting RVM stable.
-
-env:
-- TRAVIS_TAG="Deploy-2017.2.0f3" PROJECT_NAME="FPS Multiplayer Game" UNITY_PROJECT_PATH="FPS Multiplayer Game" DEPLOY_UNITYPACKAGE="path set in deploy script"
-
-
-cache:
-  directories:
-    - $UNITY_DOWNLOAD_CACHE
-
-    
+- 2.2
 before_install:
-- chmod a+x ./travis-build/*.sh
-
+- chmod a+x ./Scripts/install.sh
+- chmod a+x ./Scripts/build.sh
 install:
-- cat /etc/hosts
-- ./travis-build/install-unity.sh
-
+- ./Scripts/install.sh
 script:
-- ./travis-build/build.sh
-- ./travis-build/run-tests.sh
-
-after_success:
-- ./travis-build/export-unity-package.sh
-
+- ./Scripts/build.sh
+after_failure:
+- echo "Fail log:"
+- cat unity.log
