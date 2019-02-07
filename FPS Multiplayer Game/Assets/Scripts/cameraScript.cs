@@ -8,6 +8,7 @@ public class cameraScript : MonoBehaviour {
     //Player rigid body will be set in Unity.
    // public Rigidbody player;
     Vector3 posOffset;
+    [SerializeField]
     GameObject player;
     UIScript ui;    
 
@@ -26,14 +27,14 @@ public class cameraScript : MonoBehaviour {
     }
     public void initPlayerCamera()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject p in players)
-        {
-            if (p.GetComponent<playerController>().localPlayer)
-            {
-                player = p;
-            }
-        } 
+       // GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+       // foreach (GameObject p in players)
+       // {
+       //     if (p.GetComponent<playerController>().localPlayer)
+        //    {
+       //         player = p;
+       //    }
+       // } 
     }
 	
 	// Update is called once per frame
@@ -58,7 +59,10 @@ public class cameraScript : MonoBehaviour {
 
     private void LateUpdate()
     {
-        transform.position = player.GetComponent<Rigidbody>().position + posOffset;
+        //this thing should work once fixed
+        //transform.position = player.GetComponent<Rigidbody>().position + posOffset;
+
+
         //transform.eulerAngles = player.transform.eulerAngles;
     }
 }
