@@ -12,7 +12,7 @@ public class WeaponsScript : NetworkBehaviour {
 
 
 
-    public bool shootDebugGun(Transform tr)
+    public bool shootDebugGun(Transform tr, GameObject player)
     {
 
         //Draw line here for debug
@@ -27,7 +27,8 @@ public class WeaponsScript : NetworkBehaviour {
             lastFired = time;
             //GameObject bullet = Instantiate(debugBullet, GameObject.Find("Main Camera").GetComponent<Transform>().transform);
 
-            Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            //Camera camera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
+            Camera camera = player.GetComponentInChildren<Camera>().GetComponent<Camera>();
             Vector3 spawnPos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
             Transform spawnLocation = camera.transform;
             spawnLocation.position = camera.transform.position;
@@ -37,7 +38,7 @@ public class WeaponsScript : NetworkBehaviour {
 
             Debug.Log(Screen.width + " " + Screen.height + " " + camera.transform.position + " " + spawnLocation.position + " " + bullet.transform.position);
             bullet.transform.parent = null;
-            bullet.GetComponent<Rigidbody>().velocity = GameObject.Find("Main Camera").GetComponent<Transform>().transform.forward * 50f;
+            bullet.GetComponent<Rigidbody>().velocity = player.GetComponentInChildren<Camera>().GetComponent<Transform>().transform.forward * 50f;
             //Debug.Log(Camera.main.transform.forward.normalized);
             bullet.transform.parent = null;
             NetworkServer.Spawn(bullet);
@@ -87,13 +88,13 @@ public class Weapon
     public string name { get; set; }
     public int ammoMax { get; set; }
     public int ammoCurrent { get; set; }
-    public delegate bool shootDelegate(Transform tr);
+    public delegate bool shootDelegate(Transform tr, GameObject player);
     public shootDelegate shootCode { get; set; }
-    public void shoot(Transform tr)
+    public void shoot(Transform tr, GameObject player)
     {
         if (ammoCurrent > 0)
         {
-            if (shootCode(tr))
+            if (shootCode(tr, player))
             {
                 ammoCurrent--;
             };

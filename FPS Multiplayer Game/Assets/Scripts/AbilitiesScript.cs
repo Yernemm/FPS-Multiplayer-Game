@@ -6,7 +6,7 @@ public class AbilitiesScript : MonoBehaviour {
 
     public bool useDash(Rigidbody rb) {
         Debug.Log("using");
-        Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        Camera camera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
         Vector3 initVelocity = rb.velocity;
         initVelocity += camera.transform.forward * 20f;
         Debug.Log(initVelocity);

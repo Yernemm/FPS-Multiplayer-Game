@@ -15,7 +15,7 @@ public class cameraScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
 
         initPlayerCamera();
    
@@ -51,7 +51,7 @@ public class cameraScript : MonoBehaviour {
         if (Input.GetMouseButton(0))
         {
             Character ch = player.GetComponent<playerController>().currentCharacter;
-            ch.weapon.shoot(transform);
+            ch.weapon.shoot(transform, player);
             ui.updateAmmo(ch.weapon.ammoCurrent, ch.weapon.ammoMax);
             
         }
