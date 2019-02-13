@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class CharactersScript : MonoBehaviour {
+public class CharactersScript : NetworkBehaviour
+{
 
     WeaponsScript wp;
     AbilitiesScript ab;

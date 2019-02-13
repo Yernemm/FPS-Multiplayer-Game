@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class AbilitiesScript : MonoBehaviour {
+public class AbilitiesScript : NetworkBehaviour {
 
     public bool useDash(Rigidbody rb) {
         Debug.Log("using");

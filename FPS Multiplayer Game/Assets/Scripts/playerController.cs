@@ -26,12 +26,10 @@ public class playerController : NetworkBehaviour {
             playerCamera.SetActive(false);
             return;
         }
-        // GameObject.Find("Main Camera").GetComponent<cameraScript>().initPlayerCamera();
+        
+        //Set localPlayer to isLocalPlayer so other scripts can access this property.
         localPlayer = isLocalPlayer;
-       // if (!isLocalPlayer)
-       // {
-       //     return;
-      //  }
+     
         ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
         rb = GetComponent<Rigidbody>();
         gameController = GameObject.Find("Game Controller");
@@ -126,6 +124,8 @@ public class playerController : NetworkBehaviour {
 
     private void FixedUpdate()
     {
+        if (!isLocalPlayer)
+            return;
         float dragMultiplier = 0.95f;
         Vector3 velocity = rb.velocity;
         velocity.x *= dragMultiplier;

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class cameraScript : MonoBehaviour {
+public class cameraScript : NetworkBehaviour {
 
     
     //Player rigid body will be set in Unity.
@@ -20,9 +21,16 @@ public class cameraScript : MonoBehaviour {
         initPlayerCamera();
    
         posOffset = new Vector3(0, 1, 0);
-       foreach(Transform g in player.transform)
+
+        //Make local player invisible because camera is inside local player.
+        //Prevents model obstructing view.
+        if (!player.GetComponent<playerController>().localPlayer)
         {
-            g.GetComponent<MeshRenderer>().enabled = false;
+            foreach (Transform g in player.transform)
+            {
+
+                g.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
     }
     public void initPlayerCamera()

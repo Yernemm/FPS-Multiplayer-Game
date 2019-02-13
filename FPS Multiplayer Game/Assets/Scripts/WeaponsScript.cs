@@ -11,7 +11,8 @@ public class WeaponsScript : NetworkBehaviour {
 
 
 
-
+    //Default gun.
+    
     public bool shootDebugGun(Transform tr, GameObject player)
     {
 
@@ -28,11 +29,47 @@ public class WeaponsScript : NetworkBehaviour {
             //GameObject bullet = Instantiate(debugBullet, GameObject.Find("Main Camera").GetComponent<Transform>().transform);
 
             //Camera camera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
-            Camera camera = player.GetComponentInChildren<Camera>().GetComponent<Camera>();
+           
+            //GameObject bullet = Instantiate(debugBullet);
+
+            CmdServerSpawnBullet(debugBullet, player.GetInstanceID());
+
+           // CmdServerSpawn(bullet);
+           //NetworkServer.Spawn(bullet);
+            return true;
+        }
+        else
+            return false;
+
+        
+    }
+
+    [Command]
+    void CmdServerSpawnBullet(GameObject obj, int playerID)
+    {
+        if (isServer)
+        {
+            
+            GameObject player = new GameObject();
+
+            //Iterate through all game objects in the scene
+            foreach (GameObject g in (GameObject[])FindObjectsOfType(typeof(GameObject)))
+            {
+                if (g.GetInstanceID() == playerID)
+                    player = g;
+            }
+
+
+                Camera camera = player.GetComponentInChildren<Camera>().GetComponent<Camera>();
             Vector3 spawnPos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
             Transform spawnLocation = camera.transform;
             spawnLocation.position = camera.transform.position;
-            GameObject bullet = Instantiate(debugBullet);
+
+
+
+
+            GameObject bullet = Instantiate(obj);
+
             bullet.transform.position = spawnLocation.position;
 
 
@@ -41,12 +78,9 @@ public class WeaponsScript : NetworkBehaviour {
             bullet.GetComponent<Rigidbody>().velocity = player.GetComponentInChildren<Camera>().GetComponent<Transform>().transform.forward * 50f;
             //Debug.Log(Camera.main.transform.forward.normalized);
             bullet.transform.parent = null;
-            NetworkServer.Spawn(bullet);
-            return true;
-        }
-        else
-            return false;
 
+            NetworkServer.Spawn(obj);
+        }
         
     }
     public bool reloadDebug()
