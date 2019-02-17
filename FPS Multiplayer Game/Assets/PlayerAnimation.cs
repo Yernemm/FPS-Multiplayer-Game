@@ -35,14 +35,4 @@ public class PlayerAnimation : MonoBehaviour
             anim.Play(animIdle, 0, 0);
         }
     }
-
-    private void LateUpdate()
-    {
-        Debug.Log(head.transform.localRotation);
-        Debug.Log(cam.transform.localRotation);
-        // Transform headPos = cam.transform;
-        //head.transform.localRotation = new Quaternion(cam.transform.localRotation.x, head.transform.localRotation.y, head.transform.localRotation.z, head.transform.localRotation.w);
-        //head.transform.eulerAngles.Set(cam.transform.eulerAngles.x, cam.transform.eulerAngles.y, cam.transform.eulerAngles.z);
-       // head.transform.rotation = headPos.rotation;
-    }
 }
