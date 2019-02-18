@@ -42,6 +42,8 @@ public class PlayerAnimation : MonoBehaviour
 
         animateFromDirection(forward, right, 1, 0, animWalk);
         animateFromDirection(forward, right, -1, 0, animWalkBack);
+
+        if(!anim.GetCurrentAnimatorStateInfo(0).IsName(animJump))
         animateFromDirection(forward, right, 0, 0, animIdle);
 
         animateFromDirection(forward, right, 1, -1, animWalkLeft);
@@ -55,16 +57,16 @@ public class PlayerAnimation : MonoBehaviour
        
 
 
-        if (!isMoving & anim.GetCurrentAnimatorClipInfo(0)[0].clip.name != animIdle)
-        {
-            anim.Play(animIdle, 0, 0);
-        }
+       // if (!isMoving & anim.GetCurrentAnimatorClipInfo(0)[0].clip.name != animIdle)
+       // {
+       //     anim.Play(animIdle, 0, 0);
+       // }
     }
 
     bool animate(string keyPress, string animation)
     {
 
-        if (Input.GetKey(keyPress) & anim.GetCurrentAnimatorStateInfo(0).IsName(animation))
+        if (Input.GetKeyDown(keyPress) & !anim.GetCurrentAnimatorStateInfo(0).IsName(animation))
         {
             anim.Play(animation, 0, 0);
             return true;

@@ -713,7 +713,6 @@ GameObject:
   - component: {fileID: 8623494517957309547}
   - component: {fileID: 615411491673353193}
   - component: {fileID: 1360225363937136670}
-  - component: {fileID: 3091140102983863769}
   m_Layer: 0
   m_Name: PlayerBot
   m_TagString: Untagged
@@ -904,21 +903,6 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
---- !u!114 &3091140102983863769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5366752279963096359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f03a7f9f9a7d874419d8b86eb646d89d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ikActive: 1
-  rightHandObj: {fileID: 5052428753225752564}
-  lookObj: {fileID: 1575200878226053035}
 --- !u!1 &5386205024370721200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1172,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7914285916543395090}
-  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: 0.00000011740896, w: -0.00000006426124}
+  m_LocalRotation: {x: -0.70710677, y: 0.70710677, z: 0.00000012223984, w: -0.00000006690532}
   m_LocalPosition: {x: -0.9145597, y: -0.0025757872, z: -0.0043976805}
   m_LocalScale: {x: 3.0320642, y: 3.0320632, z: 3.0320647}
   m_Children:
