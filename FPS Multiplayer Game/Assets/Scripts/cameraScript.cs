@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class cameraScript : NetworkBehaviour {
+public class cameraScript : MonoBehaviour {
 
     
     //Player rigid body will be set in Unity.
