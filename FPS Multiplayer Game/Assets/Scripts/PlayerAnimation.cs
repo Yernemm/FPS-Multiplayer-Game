@@ -18,8 +18,6 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField]
     GameObject cam;
     [SerializeField]
-    GameObject head;
-    [SerializeField]
     GameObject jumpBox;
     // Update is called once per frame
     void Update()

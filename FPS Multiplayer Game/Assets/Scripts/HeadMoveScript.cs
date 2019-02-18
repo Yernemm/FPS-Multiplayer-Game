@@ -6,20 +6,21 @@ public class HeadMoveScript : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
+    float newYPos;
     // Start is called before the first frame update
     void Start()
     {
-        
+        newYPos = transform.localEulerAngles.y;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (!player.GetComponent<playerController>().localPlayer)
             return;
 
         float yRot = Input.GetAxis("Mouse Y") * player.GetComponent<playerController>().camSens;
-        float newYPos = transform.localEulerAngles.y + yRot;
+        newYPos +=  yRot;
 
         if (newYPos > 90f & newYPos < 180f)
             newYPos = 90f;

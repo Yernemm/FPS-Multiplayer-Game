@@ -16,6 +16,8 @@ public class playerController : NetworkBehaviour {
     [SerializeField]
     Collider jumpTrigger;
 
+    public Transform gunSpawnPosition;
+
 
     CharactersScript chars;
     public Character currentCharacter;
