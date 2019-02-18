@@ -316,6 +316,7 @@
     <Compile Include="Assets\Scripts\CollisionIgnore.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\HeadMoveScript.cs" />
+    <Compile Include="Assets\Scripts\JumpColliderScript.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
     <Compile Include="Assets\Scripts\SelfKill.cs" />

@@ -13,6 +13,9 @@ public class playerController : NetworkBehaviour {
     [SerializeField]
     GameObject playerCamera;
 
+    [SerializeField]
+    Collider jumpTrigger;
+
 
     CharactersScript chars;
     public Character currentCharacter;
@@ -77,7 +80,7 @@ public class playerController : NetworkBehaviour {
         Vector3 worldDirection = transform.TransformDirection(new Vector3(x,0,z ));
 
 
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("q") && currentCharacter.ability1.offCooldown)
         {
             Debug.Log("before using");
             Debug.Log(currentCharacter.name);
@@ -93,8 +96,13 @@ public class playerController : NetworkBehaviour {
         float jumpV = 0;
         if(Input.GetKeyDown("space"))
         {
-            if (Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, (GetComponent<Collider>().bounds.size.y / 2) + 0.05f))
+            // Debug.DrawRay(GetComponent<Collider>().transform.position, Vector3.down, Color.red, 30);
+            // if (Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, (GetComponent<Collider>().bounds.size.y / 2) + 0.05f))
+            if (jumpTrigger.GetComponent<JumpColliderScript>().canJump)
+            {
+                Debug.Log("Jump " + currentCharacter.jumpForce);
                 jumpV = currentCharacter.jumpForce;
+            }
             
         }
 
@@ -134,6 +142,7 @@ public class playerController : NetworkBehaviour {
         velocity.z *= dragMultiplier;
         rb.velocity = velocity;
     }
+
 
 
 }

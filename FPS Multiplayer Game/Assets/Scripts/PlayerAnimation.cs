@@ -13,11 +13,14 @@ public class PlayerAnimation : MonoBehaviour
     const string animWalkRight = "WalkRight";
     const string animWalkLeft = "WalkLeft";
     const string animJump = "Jump";
+    const string animInAir = "InAir";
 
     [SerializeField]
     GameObject cam;
     [SerializeField]
     GameObject head;
+    [SerializeField]
+    GameObject jumpBox;
     // Update is called once per frame
     void Update()
     {
@@ -53,7 +56,11 @@ public class PlayerAnimation : MonoBehaviour
         animateFromDirection(forward, right, 1, 1, animWalkRight);
         animateFromDirection(forward, right, 0, 1, animWalkRight);
         animateFromDirection(forward, right, -1, 1, animWalkRight);
+
         animate("space", animJump);
+
+        if (!jumpBox.GetComponent<JumpColliderScript>().canJump & !anim.GetCurrentAnimatorStateInfo(0).IsName(animJump) & !anim.GetCurrentAnimatorStateInfo(0).IsName(animInAir))
+            anim.Play(animInAir, 0, 0);
        
 
 
@@ -78,7 +85,7 @@ public class PlayerAnimation : MonoBehaviour
     bool animateFromDirection(int forward, int right, int f, int r, string animation)
     {
 
-        if (forward == f & right == r & !anim.GetCurrentAnimatorStateInfo(0).IsName(animation))
+        if (forward == f & right == r & !anim.GetCurrentAnimatorStateInfo(0).IsName(animation) & !anim.GetCurrentAnimatorStateInfo(0).IsName(animJump) & jumpBox.GetComponent<JumpColliderScript>().canJump)
         {
             anim.Play(animation, 0, 0);
             return true;

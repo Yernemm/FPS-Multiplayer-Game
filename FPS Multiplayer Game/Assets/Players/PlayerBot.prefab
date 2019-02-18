@@ -432,6 +432,64 @@ Transform:
   m_Father: {fileID: 7409478187261943667}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -15.426001, y: 75.652, z: 69.30701}
+--- !u!1 &2724702339645922252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6018106795507463356}
+  - component: {fileID: 1611107224915853267}
+  - component: {fileID: 4887174462388222733}
+  m_Layer: 0
+  m_Name: JumpBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6018106795507463356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724702339645922252}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.06, z: -0.12}
+  m_LocalScale: {x: 3.0320606, y: 3.0320606, z: 3.0320606}
+  m_Children: []
+  m_Father: {fileID: 2340607253460682702}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1611107224915853267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724702339645922252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.85, y: 0.1, z: 0.29756784}
+  m_Center: {x: 0, y: 0, z: 0.013783932}
+--- !u!114 &4887174462388222733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724702339645922252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958d48a3451b1d24f9159ed9b3e2c505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canJump: 0
 --- !u!1 &3248449273513891302
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +791,7 @@ Transform:
   m_Children:
   - {fileID: 2741152581193664558}
   - {fileID: 2796520507766453782}
+  - {fileID: 6018106795507463356}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -801,6 +860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 7914285916543395090}
+  jumpTrigger: {fileID: 1611107224915853267}
   camSens: 3
   localPlayer: 0
 --- !u!114 &2707209014245245548
@@ -883,6 +943,7 @@ MonoBehaviour:
   anim: {fileID: 4834790372311063443}
   cam: {fileID: 7914285916543395090}
   head: {fileID: 6053709631710183862}
+  jumpBox: {fileID: 2724702339645922252}
 --- !u!114 &1360225363937136670
 MonoBehaviour:
   m_ObjectHideFlags: 0
