@@ -12,6 +12,8 @@ public class playerController : NetworkBehaviour {
     GameObject gameController;
     [SerializeField]
     GameObject playerCamera;
+
+
     CharactersScript chars;
     public Character currentCharacter;
     public float camSens;
@@ -91,7 +93,7 @@ public class playerController : NetworkBehaviour {
         float jumpV = 0;
         if(Input.GetKeyDown("space"))
         {
-            if (Physics.Raycast(rb.transform.position, Vector3.down, (GetComponent<Collider>().bounds.size.y / 2) + 0.1f))
+            if (Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, (GetComponent<Collider>().bounds.size.y / 2) + 0.05f))
                 jumpV = currentCharacter.jumpForce;
             
         }

@@ -47,13 +47,7 @@ public class cameraScript : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Look at the player every frame.
-        //transform.LookAt(player.transform);
-        float yRot = Input.GetAxis("Mouse Y") * player.GetComponent<playerController>().camSens;
-       // if (yRot > 0)
-           // Debug.Log(yRot);
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, player.transform.eulerAngles.y, player.transform.eulerAngles.z);
-        transform.eulerAngles -= new Vector3(yRot,0, 0);
+
 
 
         if (Input.GetMouseButton(0))
