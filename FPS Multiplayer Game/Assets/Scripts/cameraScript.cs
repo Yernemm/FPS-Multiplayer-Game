@@ -16,7 +16,7 @@ public class cameraScript : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
-        Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.lockState = CursorLockMode.Locked;
 
         initPlayerCamera();
    
@@ -29,7 +29,7 @@ public class cameraScript : NetworkBehaviour {
             foreach (Transform g in player.transform)
             {
 
-                g.GetComponent<MeshRenderer>().enabled = false;
+               // g.GetComponent<MeshRenderer>().enabled = false;
             }
         }
     }

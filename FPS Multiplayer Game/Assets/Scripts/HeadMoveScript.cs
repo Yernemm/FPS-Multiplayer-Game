@@ -14,7 +14,10 @@ public class HeadMoveScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {     
+    {
+        if (!player.GetComponent<playerController>().localPlayer)
+            return;
+
         float yRot = Input.GetAxis("Mouse Y") * player.GetComponent<playerController>().camSens;
         float newYPos = transform.localEulerAngles.y + yRot;
 

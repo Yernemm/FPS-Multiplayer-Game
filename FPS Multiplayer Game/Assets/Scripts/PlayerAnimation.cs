@@ -24,6 +24,8 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GetComponent<playerController>().localPlayer)
+            return;
         bool isMoving = false;
         int forward = 0;
         int right = 0;
