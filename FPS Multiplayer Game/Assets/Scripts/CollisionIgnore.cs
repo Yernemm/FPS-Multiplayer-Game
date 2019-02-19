@@ -15,7 +15,7 @@ public class CollisionIgnore : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.name);
+        //Debug.Log(collision.collider.name);
         if (collision.gameObject.tag == Tag)
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());

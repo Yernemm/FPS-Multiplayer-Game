@@ -19,7 +19,12 @@ public class WeaponsScript : NetworkBehaviour {
         if (lastFired <= time - rifleWeapon.fireInterval())
         {
             lastFired = time;
-            CmdServerSpawnRifleBullet(player.GetComponent<playerController>().gunSpawnPosition.position, player.GetComponent<playerController>().gunSpawnPosition.rotation);
+            Debug.Log("before shoot " + player.GetComponent<playerController>().playerId);
+            CmdServerSpawnRifleBullet(
+                player.GetComponent<playerController>().gunSpawnPosition.position, 
+                player.GetComponent<playerController>().gunSpawnPosition.rotation, 
+                player.GetComponent<playerController>().playerId
+                );
             camera.GetComponent<Animator>().Play("CameraRecoil", 0, 0);
             return true;
         }
@@ -29,9 +34,11 @@ public class WeaponsScript : NetworkBehaviour {
     }
 
     [Command]
-    void CmdServerSpawnRifleBullet(Vector3 pos, Quaternion rot)
+    void CmdServerSpawnRifleBullet(Vector3 pos, Quaternion rot, uint shooter)
     {
+        Debug.Log("during shoot " + shooter);
         GameObject bullet = Instantiate(mainBullet, pos,rot);
+        bullet.GetComponent<BulletScript>().shotBy = shooter;
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 75f;
         NetworkServer.Spawn(bullet);     
         
