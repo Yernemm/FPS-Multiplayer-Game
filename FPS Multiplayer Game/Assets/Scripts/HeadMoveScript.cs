@@ -26,6 +26,8 @@ public class HeadMoveScript : MonoBehaviour
             newYPos = 90f;
         else if (newYPos < 270f & newYPos > 180f)
             newYPos = -90f;
+        else if (newYPos < -90f)
+            newYPos = -90f;
 
         transform.localEulerAngles = new Vector3(0, newYPos, 0);
     }

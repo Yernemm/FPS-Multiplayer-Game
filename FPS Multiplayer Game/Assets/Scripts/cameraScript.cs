@@ -14,7 +14,7 @@ public class cameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
+        ui = player.GetComponent<UIScript>();
        // Cursor.lockState = CursorLockMode.Locked;
 
         initPlayerCamera();

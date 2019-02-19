@@ -24,10 +24,15 @@ public class playerController : NetworkBehaviour {
     public float camSens;
     public bool localPlayer;
     bool debugMode = true;
+
     UIScript ui;
+
+    public uint playerId;
+
 
     // Use this for initialization
     void Start () {
+        playerId = GetComponent<NetworkIdentity>().netId.Value;
         if (!isLocalPlayer)
         {
             playerCamera.SetActive(false);
@@ -37,10 +42,10 @@ public class playerController : NetworkBehaviour {
         //Set localPlayer to isLocalPlayer so other scripts can access this property.
         localPlayer = isLocalPlayer;
      
-        ui = GameObject.Find("Game Controller").GetComponent<UIScript>();
+        ui = GetComponent<UIScript>();
         rb = GetComponent<Rigidbody>();
         gameController = GameObject.Find("Game Controller");
-        chars = gameController.GetComponent<CharactersScript>();
+        chars = GetComponent<CharactersScript>();
 
         currentCharacter = chars.debug;
         moveSpeed = currentCharacter.moveSpeed;
