@@ -21,7 +21,7 @@ public class CharactersScript : NetworkBehaviour
     {
         wp = GetComponent<WeaponsScript>();
         ab = GetComponent<AbilitiesScript>();
-        debug.weapon = wp.debugGun;
+        debug.weapon = wp.rifleWeapon;
         debug.ability1 = ab.dash;
         debug.ability2 = ab.dash;
     }
