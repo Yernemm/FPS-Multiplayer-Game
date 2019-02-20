@@ -1,39 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : NetworkBehaviour
 {
 
     public uint shotBy;
-
-    private void Start()
-    {
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            Physics.IgnoreCollision(g.GetComponent<Collider>(), GetComponent<Collider>());
-        }
-    }
+    [SerializeField]
+    GameObject particles;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            
-            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
-           
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
+        Debug.Log("Bullet collided with " + collision.collider);
+        if (collision.collider.gameObject.tag == "Player")
+            if(collision.collider.gameObject.GetComponent<playerController>().playerId == shotBy)
+            return;
 
-        if (other.gameObject.tag == "Player")
+        if (collision.collider.gameObject.tag == "Player")
         {       
             
-            if (other.gameObject.GetComponent<playerController>().playerId != shotBy)
+            if (collision.collider.gameObject.GetComponent<playerController>().playerId != shotBy)
             {
-                Debug.Log("Player " + other.gameObject.GetComponent<playerController>().playerId + " has been shot by Player " + shotBy);
+                Debug.Log("Player " + collision.collider.gameObject.GetComponent<playerController>().playerId + " has been shot by Player " + shotBy);
             }
         }
+        CmdSpawnParticles(transform.position);
+        Destroy(gameObject);
     }
+
+    [Command]
+    void CmdSpawnParticles(Vector3 postion)
+    {
+        GameObject p = Instantiate(particles, postion, Quaternion.identity);
+        NetworkServer.Spawn(p);
+    }
+
 }
