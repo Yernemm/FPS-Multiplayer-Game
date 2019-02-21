@@ -29,6 +29,9 @@ public class playerController : NetworkBehaviour {
 
     public uint playerId;
 
+    [SerializeField]
+    float health;
+
 
     // Use this for initialization
     void Start () {
@@ -150,6 +153,20 @@ public class playerController : NetworkBehaviour {
         rb.velocity = velocity;
     }
 
+    public void damage(float amount)
+    {
+        health -= amount;
+    }
+
+    public void initiateHealth()
+    {
+
+    }
+
+    public void reloadFinished()
+    {
+        currentCharacter.weapon.isReloading = false;
+    }
 
 
 }

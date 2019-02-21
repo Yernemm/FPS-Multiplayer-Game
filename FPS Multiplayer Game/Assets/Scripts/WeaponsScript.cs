@@ -10,6 +10,8 @@ public class WeaponsScript : NetworkBehaviour {
     public UIScript ui;
     [SerializeField]
     GameObject camera;
+    [SerializeField]
+    GameObject reloadAnimationObject;
 
 
     // ================ NORMAL RIFLE ================
@@ -46,15 +48,25 @@ public class WeaponsScript : NetworkBehaviour {
 
     public bool reloadRifle()
     {
-        rifleWeapon.ammoCurrent = rifleWeapon.ammoMax;
-        return true;
-        
+        if (rifleWeapon.isReloading || rifleWeapon.ammoCurrent == rifleWeapon.ammoMax)
+            return false;
+        else
+        {
+            Animator anim = reloadAnimationObject.GetComponent<Animator>();
+            anim.SetFloat("Speed", (float)(1 / rifleWeapon.reloadTime));
+            anim.Play("Reload", 0, 0);
+            rifleWeapon.isReloading = true;
+            rifleWeapon.ammoCurrent = rifleWeapon.ammoMax;
+            return true;
+        }
     }
+
     public Weapon rifleWeapon = new Weapon(30)
     {
         name = "Rifle",
         fireRate = 7,
-        reloadTime = 2
+        reloadTime = 1,
+        damage = 20
     };
 
     //===========================================================
@@ -75,6 +87,8 @@ public class WeaponsScript : NetworkBehaviour {
     }
 
 
+
+
 }
 
 
@@ -89,13 +103,15 @@ public class Weapon
     public shootDelegate shootCode { get; set; }
     public void shoot(Transform tr, GameObject player)
     {
-        if (ammoCurrent > 0)
+        if (ammoCurrent > 0 && !isReloading)
         {
             if (shootCode(tr, player))
             {
                 ammoCurrent--;
             };
         }
+        else if (ammoCurrent <= 0 && !isReloading)
+            reload();
     }
     public delegate bool reloadDelegate();
     public reloadDelegate reload;
@@ -105,10 +121,13 @@ public class Weapon
     {
         ammoMax = ammoMaxInput;
         ammoCurrent = ammoMax;
+        isReloading = false;
     }
     public double fireInterval()
     {
         return 1 / fireRate;
     }
-   
+    public int damage { get; set; }
+    public bool isReloading { get; set; }
+
 }

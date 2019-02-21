@@ -320,6 +320,7 @@
     <Compile Include="Assets\Scripts\JumpColliderScript.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
+    <Compile Include="Assets\Scripts\ReloadAnimation.cs" />
     <Compile Include="Assets\Scripts\SelfKill.cs" />
     <Compile Include="Assets\Scripts\UIScript.cs" />
     <Compile Include="Assets\Scripts\WeaponsScript.cs" />

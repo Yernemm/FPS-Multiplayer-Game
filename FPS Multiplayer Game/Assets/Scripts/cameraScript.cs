@@ -15,7 +15,7 @@ public class cameraScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ui = player.GetComponent<UIScript>();
-       // Cursor.lockState = CursorLockMode.Locked;
+       Cursor.lockState = CursorLockMode.Locked;
        
    
         posOffset = new Vector3(0, 1, 0);

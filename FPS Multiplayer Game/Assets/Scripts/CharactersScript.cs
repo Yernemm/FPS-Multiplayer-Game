@@ -14,7 +14,8 @@ public class CharactersScript : NetworkBehaviour
         name = "Debug Character",
         moveSpeed = 15,
         jumpForce = 4,
-        mass = 60
+        mass = 60,
+        maxHealth = 200
     };
 
     private void Start()
@@ -39,5 +40,6 @@ public class Character
     public Weapon weapon { get; set; }
     public Ability ability1 { get; set; }
     public Ability ability2 { get; set; }
+    public int maxHealth { get; set; }
 
 }

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameController : MonoBehaviour {
+public class GameController : NetworkBehaviour {
 
+
+    //SyncVar synchronises the state of the variable between the server and the clients.
+    [SyncVar]
     public double timeLeft;
+    [SyncVar]
     public double time;
-    //UIScript uiScript;
+    
    
     
     public string debugText = "";
