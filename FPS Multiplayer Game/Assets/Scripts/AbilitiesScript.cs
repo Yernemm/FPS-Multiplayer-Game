@@ -5,13 +5,19 @@ using UnityEngine.Networking;
 
 public class AbilitiesScript : NetworkBehaviour {
 
+    [SerializeField]
+    GameObject cameraObject;
+
     public bool useDash(Rigidbody rb) {
         Debug.Log("using");
-        Camera camera = GameObject.Find("PlayerCamera").GetComponent<Camera>();
+        Camera camera = cameraObject.GetComponent<Camera>();
         Vector3 initVelocity = rb.velocity;
         initVelocity += camera.transform.forward * 20f;
         Debug.Log(initVelocity);
         rb.velocity = initVelocity;
+
+        Animator anim = cameraObject.GetComponent<Animator>();
+        anim.Play("CameraDashAbility", 0, 0);
         return false;
     }
 

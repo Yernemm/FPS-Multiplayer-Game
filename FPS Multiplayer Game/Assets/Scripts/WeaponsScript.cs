@@ -27,7 +27,10 @@ public class WeaponsScript : NetworkBehaviour {
                 player.GetComponent<playerController>().gunSpawnPosition.rotation, 
                 player.GetComponent<playerController>().playerId
                 );
-            camera.GetComponent<Animator>().Play("CameraRecoil", 0, 0);
+
+            if(!camera.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CameraDashAbility"))
+                camera.GetComponent<Animator>().Play("CameraRecoil", 0, 0);
+
             return true;
         }
         else
