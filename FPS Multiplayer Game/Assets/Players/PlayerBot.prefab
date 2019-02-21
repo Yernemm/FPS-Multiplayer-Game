@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 7914285916543395090}
+  dashSprite: {fileID: 21300000, guid: e1b88c6538165184e88d7553c075a4fd, type: 3}
 --- !u!114 &4737759245337268003
 MonoBehaviour:
   m_ObjectHideFlags: 0

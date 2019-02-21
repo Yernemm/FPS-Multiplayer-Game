@@ -32,6 +32,8 @@ public class playerController : NetworkBehaviour {
     [SerializeField]
     float health;
 
+    bool iconsInitiated;
+
 
     // Use this for initialization
     void Start () {
@@ -53,12 +55,26 @@ public class playerController : NetworkBehaviour {
         currentCharacter = chars.debug;
         moveSpeed = currentCharacter.moveSpeed;
         Debug.Log(moveSpeed);
+
+        iconsInitiated = false;
+   
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
         if (!isLocalPlayer)
             return;
+
+        if (!iconsInitiated)
+        {
+            ui.setAbility1Sprite(currentCharacter.ability1.sprite);
+            ui.setAbility2Sprite(currentCharacter.ability2.sprite);
+            iconsInitiated = true;
+        }
+
+        ui.updateAbility1Cooldown(currentCharacter.ability1.cooldownCurrent);
+        ui.updateAbility2Cooldown(currentCharacter.ability2.cooldownCurrent);
 
         //Create a copy of the player's velocity vector.
         Vector3 velocity = rb.velocity;
