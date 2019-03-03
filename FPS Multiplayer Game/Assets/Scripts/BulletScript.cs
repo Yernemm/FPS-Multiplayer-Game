@@ -10,6 +10,8 @@ public class BulletScript : NetworkBehaviour
     [SerializeField]
     GameObject particles;
 
+    public int damage;
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Bullet collided with " + collision.collider);

@@ -156,6 +156,8 @@ public class playerController : NetworkBehaviour {
 
 
         ui.updateAmmo(currentCharacter.weapon.ammoCurrent, currentCharacter.weapon.ammoMax);
+
+        ui.updateHealth(currentCharacter.healthCurrent, currentCharacter.healthMax);
         }
 
     private void FixedUpdate()

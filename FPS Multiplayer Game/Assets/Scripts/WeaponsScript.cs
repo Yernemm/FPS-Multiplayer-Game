@@ -25,7 +25,8 @@ public class WeaponsScript : NetworkBehaviour {
             CmdServerSpawnRifleBullet(
                 player.GetComponent<playerController>().gunSpawnPosition.position, 
                 player.GetComponent<playerController>().gunSpawnPosition.rotation, 
-                player.GetComponent<playerController>().playerId
+                player.GetComponent<playerController>().playerId,
+                rifleWeapon.damage
                 );
 
             if(!camera.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CameraDashAbility"))
@@ -39,11 +40,12 @@ public class WeaponsScript : NetworkBehaviour {
     }
 
     [Command]
-    void CmdServerSpawnRifleBullet(Vector3 pos, Quaternion rot, uint shooter)
+    void CmdServerSpawnRifleBullet(Vector3 pos, Quaternion rot, uint shooter, int damage)
     {
         Debug.Log("during shoot " + shooter);
         GameObject bullet = Instantiate(mainBullet, pos,rot);
         bullet.GetComponent<BulletScript>().shotBy = shooter;
+        bullet.GetComponent<BulletScript>().damage = damage;
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 75f;
         NetworkServer.Spawn(bullet);     
         

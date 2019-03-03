@@ -12,6 +12,7 @@ public class UIScript : NetworkBehaviour {
     public UnityEngine.UI.Text ability2Text;
     public UnityEngine.UI.Image ability1Image;
     public UnityEngine.UI.Image ability2Image;
+    public UnityEngine.UI.Text healthText;
     GameController gameController;
 
     // Use this for initialization
@@ -25,6 +26,8 @@ public class UIScript : NetworkBehaviour {
         ability1Text = GameObject.Find("AbilityText1").GetComponent<UnityEngine.UI.Text>();
         ability2Text = GameObject.Find("AbilityText2").GetComponent<UnityEngine.UI.Text>();
         gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
+        healthText = GameObject.Find("HealthText").GetComponent<UnityEngine.UI.Text>();
+
     }
 
     public void updateTime(float timeLeft)
@@ -39,6 +42,11 @@ public class UIScript : NetworkBehaviour {
     public void updateAmmo(int ammoCurrent, int ammoMax)
     {
         ammoText.text = ammoCurrent + "/" + ammoMax;
+    }
+
+    public void updateHealth(int healthCurrent, int healthMax)
+    {
+        healthText.text = healthCurrent + "/" + healthMax;
     }
 
     public void setAbility1Sprite(Sprite sp)

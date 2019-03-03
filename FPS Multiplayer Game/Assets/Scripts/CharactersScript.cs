@@ -9,13 +9,12 @@ public class CharactersScript : NetworkBehaviour
     WeaponsScript wp;
     AbilitiesScript ab;
 
-    public Character debug = new Character()
+    public Character debug = new Character(200)
     {
         name = "Debug Character",
         moveSpeed = 15,
         jumpForce = 4,
         mass = 60,
-        maxHealth = 200
     };
 
     private void Start()
@@ -40,6 +39,28 @@ public class Character
     public Weapon weapon { get; set; }
     public Ability ability1 { get; set; }
     public Ability ability2 { get; set; }
-    public int maxHealth { get; set; }
-
+    public int healthMax { get; set; }
+    public int healthCurrent { get; set; }
+    public bool damage(int healthAmount)
+    {
+        healthCurrent -= healthAmount;
+        
+        if (healthCurrent <= 0)
+        {
+            die();
+            return true;
+        }
+        else
+            return false;
+    }
+    public bool die()
+    {
+        //TO-DO
+        return false;
+    }
+    public Character(int maxHealth)
+    {
+        healthMax = maxHealth;
+        healthCurrent = healthMax;
+    }
 }

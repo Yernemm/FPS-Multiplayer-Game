@@ -813,6 +813,7 @@ GameObject:
   - component: {fileID: 4737759245337268003}
   - component: {fileID: 646123207998172432}
   - component: {fileID: 6976192158570241593}
+  - component: {fileID: 9056444119854928457}
   m_Layer: 0
   m_Name: PlayerBot
   m_TagString: Player
@@ -1071,6 +1072,11 @@ MonoBehaviour:
   ammoText: {fileID: 0}
   timeLeftText: {fileID: 0}
   debugTextUI: {fileID: 0}
+  ability1Text: {fileID: 0}
+  ability2Text: {fileID: 0}
+  ability1Image: {fileID: 0}
+  ability2Image: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!114 &6976192158570241593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,6 +1089,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ef594d543a60342920c664211e6cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9056444119854928457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366752279963096359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba501ca21f058b40bbe3eb346c96583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyCollider: {fileID: 4543625405123277936}
+  headCollider: {fileID: 0}
+  pl: {fileID: 3754248320367100230}
 --- !u!1 &5386205024370721200
 GameObject:
   m_ObjectHideFlags: 0
