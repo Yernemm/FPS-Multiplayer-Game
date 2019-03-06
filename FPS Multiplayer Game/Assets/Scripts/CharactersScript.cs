@@ -13,7 +13,7 @@ public class CharactersScript : NetworkBehaviour
     {
         name = "Debug Character",
         moveSpeed = 15,
-        jumpForce = 4,
+        jumpForce = 6,
         mass = 60,
     };
 

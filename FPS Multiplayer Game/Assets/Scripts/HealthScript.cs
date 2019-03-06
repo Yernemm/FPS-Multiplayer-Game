@@ -17,7 +17,8 @@ public class HealthScript : MonoBehaviour
         if(collision.collider.gameObject.tag == "Bullet")
         {
             Debug.Log("Collision with bullet");
-            pl.currentCharacter.damage(collision.collider.GetComponent<BulletScript>().damage);
+            int damageToDeal = collision.collider.GetComponent<BulletScript>().damage;
+            pl.currentCharacter.damage(damageToDeal);
         }
     }
 

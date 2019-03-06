@@ -25,7 +25,7 @@ public class BulletScript : NetworkBehaviour
             if (collision.collider.gameObject.GetComponent<playerController>().playerId != shotBy)
             {
                 Debug.Log("Player " + collision.collider.gameObject.GetComponent<playerController>().playerId + " has been shot by Player " + shotBy);
-                collision.collider.gameObject.GetComponent<playerController>().damage(damage);
+                //collision.collider.gameObject.GetComponent<playerController>().damage(damage);
             }
         }
         CmdSpawnParticles(transform.position);
