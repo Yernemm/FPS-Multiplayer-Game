@@ -812,8 +812,9 @@ GameObject:
   - component: {fileID: 2210416379044351822}
   - component: {fileID: 4737759245337268003}
   - component: {fileID: 646123207998172432}
-  - component: {fileID: 6976192158570241593}
   - component: {fileID: 9056444119854928457}
+  - component: {fileID: 5905038165943651301}
+  - component: {fileID: 266051459682189653}
   m_Layer: 0
   m_Name: PlayerBot
   m_TagString: Player
@@ -829,8 +830,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5366752279963096359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.6195707, y: -0.581419, z: 1.921}
-  m_LocalScale: {x: 0.3298087, y: 0.3298087, z: 0.3298087}
+  m_LocalPosition: {x: -4.6196, y: -0.12488, z: 1.9505}
+  m_LocalScale: {x: 0.21350168, y: 0.21350168, z: 0.21350168}
   m_Children:
   - {fileID: 2741152581193664558}
   - {fileID: 2796520507766453782}
@@ -1077,18 +1078,6 @@ MonoBehaviour:
   ability1Image: {fileID: 0}
   ability2Image: {fileID: 0}
   healthText: {fileID: 0}
---- !u!114 &6976192158570241593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5366752279963096359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ef594d543a60342920c664211e6cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9056444119854928457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,9 +1090,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba501ca21f058b40bbe3eb346c96583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyCollider: {fileID: 4543625405123277936}
-  headCollider: {fileID: 0}
+  bodyCollider: {fileID: 5905038165943651301}
+  headCollider: {fileID: 266051459682189653}
   pl: {fileID: 3754248320367100230}
+--- !u!65 &5905038165943651301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366752279963096359}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.77, y: 7.5202894, z: 1.4727447}
+  m_Center: {x: 0, y: 3.6446395, z: -0.1264432}
+--- !u!135 &266051459682189653
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366752279963096359}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.79
+  m_Center: {x: 0.00000055835295, y: 7.723282, z: -0.032314118}
 --- !u!1 &5386205024370721200
 GameObject:
   m_ObjectHideFlags: 0

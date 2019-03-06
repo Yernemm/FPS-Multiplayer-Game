@@ -171,9 +171,9 @@ public class playerController : NetworkBehaviour {
         rb.velocity = velocity;
     }
 
-    public void damage(float amount)
+    public void damage(int amount)
     {
-        health -= amount;
+        currentCharacter.damage(amount);
     }
 
     public void initiateHealth()

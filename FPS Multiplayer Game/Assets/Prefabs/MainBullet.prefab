@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1227233945759004076}
   m_Layer: 0
   m_Name: MainBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,3 +209,4 @@ MonoBehaviour:
   shotBy: 0
   particles: {fileID: 3651973195334024666, guid: 888502b2cd8a2704899b6a9d0e403433,
     type: 3}
+  damage: 0

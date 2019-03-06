@@ -13,11 +13,20 @@ public class HealthScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected with " + collision.collider.gameObject.name);
+        Debug.Log("Collision detected with " + collision.collider.gameObject.name + "  Tag: " + collision.collider.gameObject.tag);
         if(collision.collider.gameObject.tag == "Bullet")
         {
             Debug.Log("Collision with bullet");
             pl.currentCharacter.damage(collision.collider.GetComponent<BulletScript>().damage);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Bullet")
+        {
+            Debug.Log("Trigger with bullet");
+            pl.currentCharacter.damage(other.GetComponent<BulletScript>().damage);
         }
     }
 
