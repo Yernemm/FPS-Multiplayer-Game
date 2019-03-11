@@ -14,8 +14,10 @@ public class BulletScript : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!isServer)
+            return;
         Debug.Log("Bullet collided with " + collision.collider);
-        if (collision.collider.gameObject.tag == "Player")
+        if (collision.collider.gameObject.tag == "Player")s
             if(collision.collider.gameObject.GetComponent<playerController>().playerId == shotBy)
             return;
 
