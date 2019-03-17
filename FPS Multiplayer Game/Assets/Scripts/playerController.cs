@@ -35,6 +35,7 @@ public class playerController : NetworkBehaviour {
     bool iconsInitiated;
 
 
+
     // Use this for initialization
     void Start () {
 
@@ -45,7 +46,7 @@ public class playerController : NetworkBehaviour {
 
         currentCharacter = chars.debug;
         moveSpeed = currentCharacter.moveSpeed;
-        Debug.Log(moveSpeed);
+
 
         iconsInitiated = false;
 
@@ -70,6 +71,7 @@ public class playerController : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
 
+        //Initiate ability icons
         if (!iconsInitiated)
         {
             ui.setAbility1Sprite(currentCharacter.ability1.sprite);
@@ -79,6 +81,8 @@ public class playerController : NetworkBehaviour {
 
         ui.updateAbility1Cooldown(currentCharacter.ability1.cooldownCurrent);
         ui.updateAbility2Cooldown(currentCharacter.ability2.cooldownCurrent);
+
+        //Movement below
 
         //Create a copy of the player's velocity vector.
         Vector3 velocity = rb.velocity;
@@ -94,8 +98,6 @@ public class playerController : NetworkBehaviour {
             //Time.deltaTime is the time since the previous frame.
             //This is multiplied here to prevent the player from moving faster at higher framerates.
             //It ensures a constant move speed regardless of framerate.
-            //velocity.z -= moveSpeed * Time.deltaTime;
-            //Debug.Log("MovingForward");
             z += moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey("s"))
@@ -110,34 +112,32 @@ public class playerController : NetworkBehaviour {
         Vector3 worldDirection = transform.TransformDirection(new Vector3(x,0,z ));
 
 
+        //Abilities
         if (Input.GetKeyDown("q") && currentCharacter.ability1.offCooldown)
         {
-            Debug.Log("before using");
-            Debug.Log(currentCharacter.name);
             currentCharacter.ability1.use(rb);
         }
 
         if (Input.GetKeyDown("e") && currentCharacter.ability2.offCooldown)
             currentCharacter.ability2.use(rb);
 
+        //Reload
         if (Input.GetKeyDown("r"))
             currentCharacter.weapon.reload();
 
+        //Jump
         float jumpV = 0;
         if(Input.GetKeyDown("space"))
         {
-            // Debug.DrawRay(GetComponent<Collider>().transform.position, Vector3.down, Color.red, 30);
-            // if (Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, (GetComponent<Collider>().bounds.size.y / 2) + 0.05f))
             if (jumpTrigger.GetComponent<JumpColliderScript>().canJump)
             {
-                Debug.Log("Jump " + currentCharacter.jumpForce);
                 jumpV = currentCharacter.jumpForce;
             }
             
         }
 
+        //Mouse movement rotates player left and right.
         float xRot = Input.GetAxis("Mouse X") * camSens;
-
         rb.transform.eulerAngles += new Vector3(0,xRot,0);
 
 
@@ -145,6 +145,7 @@ public class playerController : NetworkBehaviour {
         //The player's velocity is set to the final calculated velocity.
         rb.velocity = new Vector3(worldDirection.x + rb.velocity.x, rb.velocity.y + jumpV, worldDirection.z + rb.velocity.z);
 
+        //Info and cheats for development purposes.
         if (debugMode)
         {
             if (Input.GetKeyDown("p"))
@@ -159,9 +160,13 @@ public class playerController : NetworkBehaviour {
         }
 
 
+        //Update UI
         ui.updateAmmo(currentCharacter.weapon.ammoCurrent, currentCharacter.weapon.ammoMax);
-
         ui.updateHealth(currentCharacter.healthCurrent, currentCharacter.healthMax);
+
+        //Check if player below minimum height. If so, kill player.
+        if (transform.position.y < -20)
+            currentCharacter.kill();
         }
 
     private void FixedUpdate()

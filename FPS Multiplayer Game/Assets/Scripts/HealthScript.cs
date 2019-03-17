@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class HealthScript : MonoBehaviour
+public class HealthScript : NetworkBehaviour
 {
     [SerializeField]
     Collider bodyCollider;
@@ -14,12 +15,21 @@ public class HealthScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision detected with " + collision.collider.gameObject.name + "  Tag: " + collision.collider.gameObject.tag);
-        if(collision.collider.gameObject.tag == "Bullet")
+        if(collision.collider.gameObject.tag == "Bullet" &&
+            GetComponent<playerController>().playerId != collision.collider.gameObject.GetComponent<BulletScript>().shotBy)
         {
-            Debug.Log("Collision with bullet");
-            int damageToDeal = collision.collider.GetComponent<BulletScript>().damage;
-            pl.currentCharacter.damage(damageToDeal);
+
+            
+            
         }
+    }
+
+    //Procedure forced to run client-side.
+    [ClientRpc]
+    public void RpcHit(int damageToDeal)
+    {
+        Debug.Log(GetComponent<playerController>().playerId + ") Collision with bullet with " + damageToDeal);
+        pl.currentCharacter.damage(damageToDeal);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +37,7 @@ public class HealthScript : MonoBehaviour
         if(other.tag == "Bullet")
         {
             Debug.Log("Trigger with bullet");
-            pl.currentCharacter.damage(other.GetComponent<BulletScript>().damage);
+            //pl.currentCharacter.damage(other.GetComponent<BulletScript>().damage);
         }
     }
 

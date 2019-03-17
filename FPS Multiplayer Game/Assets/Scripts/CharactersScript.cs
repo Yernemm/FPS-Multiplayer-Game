@@ -8,6 +8,9 @@ public class CharactersScript : NetworkBehaviour
 
     WeaponsScript wp;
     AbilitiesScript ab;
+    NetworkStartPosition[] spawns;
+    [SerializeField]
+    GameObject deathParticles;
 
     public Character debug = new Character(200)
     {
@@ -19,13 +22,26 @@ public class CharactersScript : NetworkBehaviour
 
     private void Start()
     {
+        spawns = FindObjectsOfType<NetworkStartPosition>();
         wp = GetComponent<WeaponsScript>();
         ab = GetComponent<AbilitiesScript>();
         debug.weapon = wp.rifleWeapon;
         debug.ability1 = ab.dash;
         debug.ability2 = ab.dash;
+        debug.respawnPosition = respawnPosition;
+        debug.deathParticles = createDeathParticles;
     }
 
+
+    private void respawnPosition()
+    {
+        transform.position = spawns[Random.Range(0, spawns.Length)].transform.position;
+    }
+
+    private void createDeathParticles()
+    {
+        Instantiate(deathParticles, transform.position, Quaternion.identity);
+    }
 
 
 }
@@ -41,6 +57,10 @@ public class Character
     public Ability ability2 { get; set; }
     public int healthMax { get; set; }
     public int healthCurrent { get; set; }
+    public delegate void respawnPostionDelegate();
+    public respawnPostionDelegate respawnPosition;
+    public delegate void deathParticlesDelegate();
+    public deathParticlesDelegate deathParticles;
     public bool damage(int healthAmount)
     {
         healthCurrent -= healthAmount;
@@ -55,8 +75,18 @@ public class Character
     }
     public bool die()
     {
-        //TO-DO
-        return false;
+        deathParticles();
+        respawn();
+        return true;
+    }
+    public void respawn()
+    {
+        respawnPosition();
+        healthCurrent = healthMax;
+    }
+    public void kill()
+    {
+        damage(healthCurrent);
     }
     public Character(int maxHealth)
     {

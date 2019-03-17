@@ -39,9 +39,7 @@ public class PlayerAnimation : MonoBehaviour
         }
 
 
-        Debug.Log(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-        Debug.Log(forward);
-        Debug.Log(right);
+
 
         animateFromDirection(forward, right, 1, 0, animWalk);
         animateFromDirection(forward, right, -1, 0, animWalkBack);
@@ -62,12 +60,6 @@ public class PlayerAnimation : MonoBehaviour
         if (!jumpBox.GetComponent<JumpColliderScript>().canJump & !anim.GetCurrentAnimatorStateInfo(0).IsName(animJump) & !anim.GetCurrentAnimatorStateInfo(0).IsName(animInAir))
             anim.Play(animInAir, 0, 0);
        
-
-
-       // if (!isMoving & anim.GetCurrentAnimatorClipInfo(0)[0].clip.name != animIdle)
-       // {
-       //     anim.Play(animIdle, 0, 0);
-       // }
     }
 
     bool animate(string keyPress, string animation)
