@@ -311,6 +311,7 @@
   <ItemGroup>
     <Compile Include="Assets\Menus\MainMenuScript.cs" />
     <Compile Include="Assets\nameTagScript.cs" />
+    <Compile Include="Assets\playerName.cs" />
     <Compile Include="Assets\Scripts\AbilitiesScript.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\cameraScript.cs" />

@@ -66,6 +66,7 @@ MonoBehaviour:
   - {fileID: 5366752279963096359, guid: 64d8826991449574a909f0b026988821, type: 3}
   - {fileID: 3651973195334024666, guid: 888502b2cd8a2704899b6a9d0e403433, type: 3}
   - {fileID: 3651973195334024666, guid: 38605e51e6e2ec8429c89e0a775f8e08, type: 3}
+  - {fileID: 3651973195334024666, guid: a09de5782cfdec8448e42acba0283dfa, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -149,3 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9378ae16be0ca354bbd831dd45925fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 

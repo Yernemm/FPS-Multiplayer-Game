@@ -10,17 +10,16 @@ public class nameTagScript : MonoBehaviour
     [SerializeField]
     GameObject player;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //tagtext = GetComponent<TextMeshPro>();
-        tagtext.text = player.GetComponent<CharactersScript>().username;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        //Hide the name tag if local player.
+        if (!player.GetComponent<playerController>().localPlayer)
+            tagtext.text = player.GetComponent<CharactersScript>().username;
+        else
+            tagtext.text = "";
+
+        //Rotate the text to always face the camera.
+        transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
     }
 }

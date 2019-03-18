@@ -11,6 +11,8 @@ public class CharactersScript : NetworkBehaviour
     NetworkStartPosition[] spawns;
     [SerializeField]
     GameObject deathParticles;
+    [SerializeField]
+    GameObject spawnParticles;
     [SyncVar]
     public string username;
 
@@ -32,8 +34,9 @@ public class CharactersScript : NetworkBehaviour
         debug.ability2 = ab.dash;
         debug.respawnPosition = respawnPosition;
         debug.deathParticles = createDeathParticles;
+        //Handle setting name.
         if(isLocalPlayer)
-            username = GameObject.Find("Network Manager").GetComponent<playerName>().name;
+            CmdSetName(GameObject.Find("Network Manager").GetComponent<playerName>().name);
         Debug.Log("My name is " + username);
     }
 
@@ -41,12 +44,26 @@ public class CharactersScript : NetworkBehaviour
     private void respawnPosition()
     {
         transform.position = spawns[Random.Range(0, spawns.Length)].transform.position;
+        createSpawnParticles();
     }
 
     private void createDeathParticles()
     {
         Instantiate(deathParticles, transform.position, Quaternion.identity);
     }
+
+    private void createSpawnParticles()
+    {
+        Instantiate(spawnParticles, transform.position, Quaternion.identity);
+    }
+
+    //Set the name with server command to update it for all clients.
+    [Command]
+    void CmdSetName(string name)
+    {
+        username = name;
+    }
+
 
 
 }

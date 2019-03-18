@@ -1031,6 +1031,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 3651973195334024666, guid: 7a6c3368290b0be4ba92d9473e0822e1,
     type: 3}
+  spawnParticles: {fileID: 3651973195334024666, guid: a09de5782cfdec8448e42acba0283dfa,
+    type: 3}
+  username: 
 --- !u!114 &2210416379044351822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,16 +1366,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7580742877999015821}
   m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.0000001872535}
-  m_LocalPosition: {x: 0, y: 0, z: 5.22}
-  m_LocalScale: {x: 0.3000207, y: 0.3000202, z: 0.30002102}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 2340607253460682702}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0025753677, y: 7.97}
-  m_SizeDelta: {x: 19.52, y: 4.13}
+  m_AnchoredPosition: {x: 0, y: 9}
+  m_SizeDelta: {x: 25, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &7817688614065657874
 MeshFilter:
@@ -1456,8 +1459,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285988703
-  m_fontColor: {r: 0.3726415, g: 1, b: 0.46318802, a: 1}
+    rgba: 4291231676
+  m_fontColor: {r: 0.740566, g: 1, b: 0.7778597, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1475,7 +1478,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 25.7
+  m_fontSize: 24.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
