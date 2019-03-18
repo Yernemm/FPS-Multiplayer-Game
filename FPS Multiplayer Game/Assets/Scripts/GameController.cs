@@ -50,4 +50,23 @@ public class GameController : NetworkBehaviour {
     {
         Debug.Log("Connected to server");
     }
+
+    //Searches all game object to find a matching player.
+    public GameObject getPlayerById(uint id)
+    {
+        GameObject[] players = FindObjectsOfType<GameObject>();
+        foreach(GameObject player in players)
+        {
+            if (player.tag == "Player")
+            {
+                //Game object is a player
+                if(player.GetComponent<playerController>().playerId == id)
+                {
+                    //ID matched
+                    return player;
+                }
+            }
+        }
+        return null;
+    }
 }

@@ -12,6 +12,7 @@ public class HealthScript : NetworkBehaviour
     [SerializeField]
     playerController pl;
 
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision detected with " + collision.collider.gameObject.name + "  Tag: " + collision.collider.gameObject.tag);
@@ -30,6 +31,14 @@ public class HealthScript : NetworkBehaviour
     {
         Debug.Log(GetComponent<playerController>().playerId + ") Collision with bullet with " + damageToDeal);
         pl.currentCharacter.damage(damageToDeal);
+        
+    }
+
+    //Update score if a shot lands
+    [ClientRpc]
+    public void RpcChangeScore(int score)
+    {
+        GetComponent<playerController>().currentCharacter.changeScore(score);
     }
 
     private void OnTriggerEnter(Collider other)

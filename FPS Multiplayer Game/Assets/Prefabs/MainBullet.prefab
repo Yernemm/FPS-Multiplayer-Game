@@ -209,4 +209,6 @@ MonoBehaviour:
   shotBy: 0
   particles: {fileID: 3651973195334024666, guid: 888502b2cd8a2704899b6a9d0e403433,
     type: 3}
+  playerParticles: {fileID: 3651973195334024666, guid: 38605e51e6e2ec8429c89e0a775f8e08,
+    type: 3}
   damage: 0
