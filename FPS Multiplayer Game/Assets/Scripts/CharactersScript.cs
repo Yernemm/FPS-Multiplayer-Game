@@ -30,6 +30,7 @@ public class CharactersScript : NetworkBehaviour
         debug.ability2 = ab.dash;
         debug.respawnPosition = respawnPosition;
         debug.deathParticles = createDeathParticles;
+        debug.name = GameObject.Find("Network Manager").GetComponent<playerName>().name;
     }
 
 

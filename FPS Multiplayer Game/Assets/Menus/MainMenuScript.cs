@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class MainMenuScript : MonoBehaviour {
+public class MainMenuScript : NetworkBehaviour {
 
     public Button btnHost;
     public Button btnJoin;
     public InputField inpIp;
     public InputField inpPort;
+    public InputField inpName;
+    [SerializeField]
+    NetworkManager net;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +28,22 @@ public class MainMenuScript : MonoBehaviour {
 
     void btnHostClick()
     {
+        updateNetConfig();
         Debug.Log("Host Clicked");
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        net.StartHost();
     }
 
     void btnJoinClick()
     {
+        updateNetConfig();
         Debug.Log("Join Clicked");
+        net.StartClient();
+    }
+
+    void updateNetConfig()
+    {
+        net.networkAddress = inpIp.text;
+        net.matchPort = int.Parse(inpPort.text);
+        net.GetComponent<playerName>().name = inpName.text;
     }
 }

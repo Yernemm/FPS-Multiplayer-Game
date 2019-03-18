@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4929562184755190}
   - component: {fileID: 114535673281276588}
   - component: {fileID: 114005404002816138}
+  - component: {fileID: 7433112032425099866}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -109,7 +110,7 @@ MonoBehaviour:
     m_MaxNetSimulatorTimeout: 12000
   m_Channels: 
   m_UseWebSockets: 0
-  m_UseSimulator: 1
+  m_UseSimulator: 0
   m_SimulatedLatency: 1
   m_PacketLossPercentage: 0
   m_MaxBufferedPackets: 16
@@ -127,12 +128,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085042650047928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  showGUI: 1
+  showGUI: 0
   offsetX: 22
   offsetY: 22
+--- !u!114 &7433112032425099866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085042650047928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9378ae16be0ca354bbd831dd45925fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
