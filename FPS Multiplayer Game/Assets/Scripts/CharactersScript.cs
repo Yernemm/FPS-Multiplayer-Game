@@ -57,6 +57,7 @@ public class Character
     public Ability ability2 { get; set; }
     public int healthMax { get; set; }
     public int healthCurrent { get; set; }
+    public int score { get; set; }
     public delegate void respawnPostionDelegate();
     public respawnPostionDelegate respawnPosition;
     public delegate void deathParticlesDelegate();
@@ -75,6 +76,7 @@ public class Character
     }
     public bool die()
     {
+        changeScore(-200);
         deathParticles();
         respawn();
         return true;
@@ -88,9 +90,14 @@ public class Character
     {
         damage(healthCurrent);
     }
+    public void changeScore(int amount)
+    {
+        score += amount;
+    }
     public Character(int maxHealth)
     {
         healthMax = maxHealth;
         healthCurrent = healthMax;
+        score = 0;
     }
 }

@@ -163,6 +163,7 @@ public class playerController : NetworkBehaviour {
         //Update UI
         ui.updateAmmo(currentCharacter.weapon.ammoCurrent, currentCharacter.weapon.ammoMax);
         ui.updateHealth(currentCharacter.healthCurrent, currentCharacter.healthMax);
+        ui.updateScore(currentCharacter.score);
 
         //Check if player below minimum height. If so, kill player.
         if (transform.position.y < -20)

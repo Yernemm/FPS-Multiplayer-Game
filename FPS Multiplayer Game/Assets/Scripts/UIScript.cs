@@ -13,6 +13,7 @@ public class UIScript : NetworkBehaviour {
     public UnityEngine.UI.Image ability1Image;
     public UnityEngine.UI.Image ability2Image;
     public UnityEngine.UI.Text healthText;
+    public UnityEngine.UI.Text scoreText;
     GameController gameController;
 
     // Use this for initialization
@@ -27,6 +28,7 @@ public class UIScript : NetworkBehaviour {
         ability2Text = GameObject.Find("AbilityText2").GetComponent<UnityEngine.UI.Text>();
         gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
         healthText = GameObject.Find("HealthText").GetComponent<UnityEngine.UI.Text>();
+        scoreText = GameObject.Find("ScoreText").GetComponent<UnityEngine.UI.Text>();
 
     }
 
@@ -67,6 +69,11 @@ public class UIScript : NetworkBehaviour {
     public void updateAbility2Cooldown(float cooldown)
     {
         ability2Text.text = (Mathf.Ceil(cooldown * 10) / 10).ToString();
+    }
+
+    public void updateScore(int score)
+    {
+        scoreText.text = "Score: " + score;
     }
 
     // Update is called once per frame
