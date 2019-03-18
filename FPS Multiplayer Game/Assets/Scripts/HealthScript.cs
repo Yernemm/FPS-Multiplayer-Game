@@ -31,8 +31,11 @@ public class HealthScript : NetworkBehaviour
     {
         Debug.Log(GetComponent<playerController>().playerId + ") Collision with bullet with " + damageToDeal);
         pl.currentCharacter.damage(damageToDeal);
+     
         
     }
+
+
 
     //Update score if a shot lands
     [ClientRpc]
@@ -40,6 +43,8 @@ public class HealthScript : NetworkBehaviour
     {
         GetComponent<playerController>().currentCharacter.changeScore(score);
     }
+
+    
 
     private void OnTriggerEnter(Collider other)
     {

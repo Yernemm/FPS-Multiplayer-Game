@@ -42,6 +42,11 @@ public class BulletScript : NetworkBehaviour
                 GameObject shooter = gc.getPlayerById(shotBy);
                 shooter.GetComponent<HealthScript>().RpcChangeScore(damage);
                 CmdSpawnPlayerParticles(transform.position);
+                if(collision.collider.gameObject.GetComponent<playerController>().currentCharacter.healthCurrent - damage <= 0)
+                {
+                    //If the bullet will kill the player, give the shooter 1000 points.
+                    shooter.GetComponent<HealthScript>().RpcChangeScore(1000);
+                }
             }
         }
         else
