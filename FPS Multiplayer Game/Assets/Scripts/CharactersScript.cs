@@ -11,6 +11,8 @@ public class CharactersScript : NetworkBehaviour
     NetworkStartPosition[] spawns;
     [SerializeField]
     GameObject deathParticles;
+    [SyncVar]
+    public string username;
 
     public Character debug = new Character(200)
     {
@@ -30,7 +32,9 @@ public class CharactersScript : NetworkBehaviour
         debug.ability2 = ab.dash;
         debug.respawnPosition = respawnPosition;
         debug.deathParticles = createDeathParticles;
-        debug.name = GameObject.Find("Network Manager").GetComponent<playerName>().name;
+        if(isLocalPlayer)
+            username = GameObject.Find("Network Manager").GetComponent<playerName>().name;
+        Debug.Log("My name is " + username);
     }
 
 
