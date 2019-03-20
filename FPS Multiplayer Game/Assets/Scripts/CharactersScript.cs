@@ -16,6 +16,10 @@ public class CharactersScript : NetworkBehaviour
     [SyncVar]
     public string username;
 
+    GameController gameController;
+    [SerializeField]
+    playerController playerController;
+
     public Character debug = new Character(200)
     {
         name = "Debug Character",
@@ -26,20 +30,30 @@ public class CharactersScript : NetworkBehaviour
 
     private void Start()
     {
+        gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
         spawns = FindObjectsOfType<NetworkStartPosition>();
         wp = GetComponent<WeaponsScript>();
         ab = GetComponent<AbilitiesScript>();
         debug.weapon = wp.rifleWeapon;
         debug.ability1 = ab.dash;
         debug.ability2 = ab.dash;
-        debug.respawnPosition = respawnPosition;
-        debug.deathParticles = createDeathParticles;
+
+        setGeneralDelegates(debug);
+
         //Handle setting name.
-        if(isLocalPlayer)
+        if (isLocalPlayer)
             CmdSetName(GameObject.Find("Network Manager").GetComponent<playerName>().name);
         Debug.Log("My name is " + username);
+
+        updatePublicScore(0);
     }
 
+    void setGeneralDelegates(Character character)
+    {
+        character.respawnPosition = respawnPosition;
+        character.deathParticles = createDeathParticles;
+        character.updatePublicScore = updatePublicScore;
+    }
 
     private void respawnPosition()
     {
@@ -54,7 +68,14 @@ public class CharactersScript : NetworkBehaviour
 
     private void createSpawnParticles()
     {
-        Instantiate(spawnParticles, transform.position, Quaternion.identity);
+        CmdcreateSpawnParticles(transform.position);
+    }
+
+    [Command]
+    void CmdcreateSpawnParticles(Vector3 postion)
+    {
+        GameObject p = Instantiate(spawnParticles, postion, Quaternion.identity);
+        NetworkServer.Spawn(p);
     }
 
     //Set the name with server command to update it for all clients.
@@ -64,6 +85,10 @@ public class CharactersScript : NetworkBehaviour
         username = name;
     }
 
+    void updatePublicScore(int score)
+    {
+        gameController.CmdUpdatePublicScore(playerController.playerId, score);
+    }
 
 
 }
@@ -84,6 +109,8 @@ public class Character
     public respawnPostionDelegate respawnPosition;
     public delegate void deathParticlesDelegate();
     public deathParticlesDelegate deathParticles;
+    public delegate void updatePublicScoreDelegate(int score);
+    public updatePublicScoreDelegate updatePublicScore;
     public bool damage(int healthAmount)
     {
         healthCurrent -= healthAmount;
@@ -115,6 +142,7 @@ public class Character
     public void changeScore(int amount)
     {
         score += amount;
+        updatePublicScore(score);
     }
     public Character(int maxHealth)
     {

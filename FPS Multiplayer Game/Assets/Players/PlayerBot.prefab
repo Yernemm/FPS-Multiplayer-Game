@@ -1034,6 +1034,7 @@ MonoBehaviour:
   spawnParticles: {fileID: 3651973195334024666, guid: a09de5782cfdec8448e42acba0283dfa,
     type: 3}
   username: 
+  playerController: {fileID: 3754248320367100230}
 --- !u!114 &2210416379044351822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,6 +1086,7 @@ MonoBehaviour:
   ability2Image: {fileID: 0}
   healthText: {fileID: 0}
   scoreText: {fileID: 0}
+  topPlayerText: {fileID: 0}
 --- !u!114 &9056444119854928457
 MonoBehaviour:
   m_ObjectHideFlags: 0

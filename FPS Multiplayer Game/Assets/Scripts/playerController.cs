@@ -23,7 +23,7 @@ public class playerController : NetworkBehaviour {
     public Character currentCharacter;
     public float camSens;
     public bool localPlayer;
-    bool debugMode = true;
+    bool debugMode = false;
 
     UIScript ui;
 
@@ -167,7 +167,7 @@ public class playerController : NetworkBehaviour {
 
         //Check if player below minimum height. If so, kill player.
         if (transform.position.y < -20)
-            currentCharacter.kill();
+            GetComponent<HealthScript>().RpcHit(currentCharacter.healthCurrent);
         }
 
     private void FixedUpdate()

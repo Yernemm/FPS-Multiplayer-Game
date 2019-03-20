@@ -310,8 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Menus\MainMenuScript.cs" />
-    <Compile Include="Assets\nameTagScript.cs" />
-    <Compile Include="Assets\playerName.cs" />
     <Compile Include="Assets\Scripts\AbilitiesScript.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\cameraScript.cs" />
@@ -321,13 +319,15 @@
     <Compile Include="Assets\Scripts\HeadMoveScript.cs" />
     <Compile Include="Assets\Scripts\HealthScript.cs" />
     <Compile Include="Assets\Scripts\JumpColliderScript.cs" />
+    <Compile Include="Assets\Scripts\nameTagScript.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\playerController.cs" />
+    <Compile Include="Assets\Scripts\playerName.cs" />
     <Compile Include="Assets\Scripts\ReloadAnimation.cs" />
     <Compile Include="Assets\Scripts\SelfKill.cs" />
+    <Compile Include="Assets\Scripts\TileScript.cs" />
     <Compile Include="Assets\Scripts\UIScript.cs" />
     <Compile Include="Assets\Scripts\WeaponsScript.cs" />
-    <Compile Include="Assets\TileScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />

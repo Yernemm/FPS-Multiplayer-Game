@@ -11,7 +11,12 @@ public class GameController : NetworkBehaviour {
     public double timeLeft;
     [SyncVar]
     public double time;
+    //Dictionary pairs player IDs with player's score.
+    //Synced over network.
     
+    public Dictionary<uint, int> playerScores;
+
+    public const int maxScore = 100;
    
     
     public string debugText = "";
@@ -29,6 +34,8 @@ public class GameController : NetworkBehaviour {
         myClient = new NetworkClient();
         myClient.RegisterHandler(MsgType.Connect, OnConnected);
         myClient.Connect("127.0.0.1", 4444);
+        //Initialise dictionary.
+        playerScores = new Dictionary<uint, int>();
 
     }
 	
@@ -36,8 +43,6 @@ public class GameController : NetworkBehaviour {
 	void Update () {
         time += Time.deltaTime;
         timeLeft -= Time.deltaTime;
-        //uiScript.updateDebug(debugText);
-        //uiScript.updateTime((float)timeLeft);
 
         
     }
@@ -69,4 +74,73 @@ public class GameController : NetworkBehaviour {
         }
         return null;
     }
+    //Struct allows the function to return multiple values.
+    public struct getTopPlayerReturn
+    {
+        public GameObject player;
+        public uint id;
+        public int score;
+    }
+    //Get the player with the highest score and return their ID, object and score.
+    public getTopPlayerReturn getTopPlayer()
+    {
+        getTopPlayerReturn output = new getTopPlayerReturn();
+        uint id = 0;
+        //Lowest signed int value in case all players have a negative score.
+        int highest = -2147483648; 
+        //Iterate through all players in dictionary.
+        foreach(KeyValuePair<uint, int> score in playerScores)
+        {
+            //Catch highest score.
+            if(score.Value > highest)
+            {
+                highest = score.Value;
+                id = score.Key;
+            }
+        }
+        output.id = id;
+        output.score = highest;
+        output.player = getPlayerById(id);
+        return output;
+    }
+
+    //Command is always run on server.
+    //Called from clients, telling the server to update the player's public score.
+    [Command]
+    public void CmdUpdatePublicScore(uint id, int score)
+    {
+        playerScores[id] = score;
+        RpcUpdateLocalScores(id, score);
+        CmdCheckForWinners();
+    }
+    //Rpc is broadcast from server to all clients.
+    //Update the local dictionaries for each client.
+    [ClientRpc]
+    public void RpcUpdateLocalScores(uint id, int score)
+    {
+        playerScores[id] = score;
+    }
+
+    //Command ensures this is done by the server.
+    [Command]
+    void CmdCheckForWinners()
+    {
+        foreach (KeyValuePair<uint, int> score in playerScores)
+        {
+            if(score.Value >= maxScore)
+            {
+                //Winner found
+                //Run end of game procedure
+                RpcDebugWin(getPlayerById(score.Key).GetComponent<CharactersScript>().username);
+            }
+
+        }
+    }
+
+    [ClientRpc]
+    void RpcDebugWin(string winner)
+    {
+        Debug.Log("Winner is " + winner);
+    }
 }
+
