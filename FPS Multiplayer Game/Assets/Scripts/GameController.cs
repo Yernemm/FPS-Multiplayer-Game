@@ -17,6 +17,10 @@ public class GameController : NetworkBehaviour {
     public Dictionary<uint, int> playerScores;
 
     public const int maxScore = 100;
+    public int getMaxScore()
+    {
+        return maxScore;
+    }
    
     
     public string debugText = "";
@@ -43,7 +47,11 @@ public class GameController : NetworkBehaviour {
 	void Update () {
         time += Time.deltaTime;
         timeLeft -= Time.deltaTime;
-
+        if (isServer)
+        {
+            if (timeLeft <= 0)
+                CmdEndGame();
+        }
         
     }
     private void LateUpdate()
@@ -132,6 +140,8 @@ public class GameController : NetworkBehaviour {
                 //Winner found
                 //Run end of game procedure
                 RpcDebugWin(getPlayerById(score.Key).GetComponent<CharactersScript>().username);
+                CmdEndGame();
+
             }
 
         }
@@ -141,6 +151,48 @@ public class GameController : NetworkBehaviour {
     void RpcDebugWin(string winner)
     {
         Debug.Log("Winner is " + winner);
+    }
+
+    [Command]
+    void CmdEndGame()
+    {
+        string leaderboad = generateLeaderboard();
+        RpcEndTheGameProcedure(leaderboad);
+    }
+
+    [ClientRpc]
+    void RpcEndTheGameProcedure(string leaderboardText)
+    {
+        var gameInfo = GameObject.Find("Network Manager").GetComponent<EndOfGameInfo>();
+        gameInfo.leaderboardText = leaderboardText;
+        gameInfo.gameEnded = true;
+        NetworkManager.singleton.StopClient();
+    }
+
+    string generateLeaderboard()
+    {
+        Dictionary<uint, int> playersCopy = playerScores;
+        string leaderText = "";
+        int counter = 1;
+        while (playersCopy.Count > 0) {
+            int maxScore = -2147483648;
+            uint maxId = 0;
+            foreach (KeyValuePair<uint, int> score in playersCopy)
+            {
+                if(score.Value > maxScore)
+                {
+                    maxScore = score.Value;
+                    maxId = score.Key;
+                }
+            }
+            playersCopy.Remove(maxId);
+            leaderText += counter + ") " 
+                + getPlayerById(maxId).GetComponent<CharactersScript>().username 
+                + " : " + maxScore + "\n";
+            counter++;
+        }
+
+        return leaderText;
     }
 }
 

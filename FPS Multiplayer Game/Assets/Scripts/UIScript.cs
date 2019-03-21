@@ -76,7 +76,7 @@ public class UIScript : NetworkBehaviour {
 
     public void updateScore(int score)
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Score: " + score + "/" + gameController.getMaxScore();
     }
 
     //Update the top player display.

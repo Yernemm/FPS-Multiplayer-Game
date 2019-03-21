@@ -309,6 +309,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EndOfGameInfo.cs" />
+    <Compile Include="Assets\EndOfGameScript.cs" />
     <Compile Include="Assets\Menus\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\AbilitiesScript.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />

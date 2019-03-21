@@ -12,11 +12,14 @@ public class MainMenuScript : NetworkBehaviour {
     public InputField inpIp;
     public InputField inpPort;
     public InputField inpName;
+
     [SerializeField]
     NetworkManager net; //Network manager object.
 
 	// Use this for initialization
 	void Start () {
+        net = NetworkManager.singleton;
+        Cursor.lockState = CursorLockMode.None;
         //Add listener events to the buttons.
         btnHost.onClick.AddListener(btnHostClick);
         btnJoin.onClick.AddListener(btnJoinClick);

@@ -125,6 +125,7 @@ public class playerController : NetworkBehaviour {
         if (Input.GetKeyDown("r"))
             currentCharacter.weapon.reload();
 
+
         //Jump
         float jumpV = 0;
         if(Input.GetKeyDown("space"))
@@ -168,6 +169,19 @@ public class playerController : NetworkBehaviour {
         //Check if player below minimum height. If so, kill player.
         if (transform.position.y < -20)
             GetComponent<HealthScript>().RpcHit(currentCharacter.healthCurrent);
+
+        //Leave game with esc key.
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isServer)
+            {
+                NetworkManager.singleton.StopHost();
+            }
+            else
+            {
+                NetworkManager.singleton.StopClient();
+            }
+        }
         }
 
     private void FixedUpdate()
