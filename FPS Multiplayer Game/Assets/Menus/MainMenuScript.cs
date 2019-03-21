@@ -12,6 +12,7 @@ public class MainMenuScript : NetworkBehaviour {
     public InputField inpIp;
     public InputField inpPort;
     public InputField inpName;
+    public UnityEngine.UI.Text inputValidationText;
 
     [SerializeField]
     NetworkManager net; //Network manager object.
@@ -28,16 +29,22 @@ public class MainMenuScript : NetworkBehaviour {
     //Handle the host button.
     void btnHostClick()
     {
-        updateNetConfig();
-        Debug.Log("Host Clicked");
-        net.StartHost();
+        if (inputValidation())
+        {
+            updateNetConfig();
+            Debug.Log("Host Clicked");
+            net.StartHost();
+        }
     }
     //Handle the join button.
     void btnJoinClick()
     {
-        updateNetConfig();
-        Debug.Log("Join Clicked");
-        net.StartClient();
+        if (inputValidation())
+        {
+            updateNetConfig();
+            Debug.Log("Join Clicked");
+            net.StartClient();
+        }
     }
     //Procedure for updating the network configuration with the entered
     //address, port and username.
@@ -46,5 +53,28 @@ public class MainMenuScript : NetworkBehaviour {
         net.networkAddress = inpIp.text; //Change IP address to the text box value.
         net.matchPort = int.Parse(inpPort.text); //Parse input port.
         net.GetComponent<playerName>().name = inpName.text; //Set the username in the playerName script.
+    }
+
+    //Validate the input username string.
+    bool validateUsernameString(string username)
+    {
+        bool valid = true;
+        if (username.Length < 1)
+            valid = false;
+        if (username.Length > 20)
+            valid = false;
+        return valid;
+    }
+
+    //Validate the input boxes.
+    bool inputValidation()
+    {
+        if (validateUsernameString(inpName.text))
+            return true;
+        else
+        {
+            inputValidationText.text = "Invalid username";
+            return false;
+        }
     }
 }
