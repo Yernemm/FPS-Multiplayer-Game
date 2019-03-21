@@ -16,7 +16,7 @@ public class GameController : NetworkBehaviour {
     
     public Dictionary<uint, int> playerScores;
 
-    public const int maxScore = 100;
+    public const int maxScore = 40000;
     public int getMaxScore()
     {
         return maxScore;
@@ -31,7 +31,6 @@ public class GameController : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //uiScript = GetComponent<UIScript>();
         timeLeft = 600;
 
         NetworkClient myClient;
