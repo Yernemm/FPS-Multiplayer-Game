@@ -5,6 +5,9 @@ using UnityEngine.Networking;
 
 public class UIScript : NetworkBehaviour {
 
+    //This class provides the functions which allow other classes to easily update the HUD UI.
+
+    //Declare variables for all of the dynamic UI elements.
     public UnityEngine.UI.Text ammoText;
     public UnityEngine.UI.Text timeLeftText;
     public UnityEngine.UI.Text debugTextUI;
@@ -19,7 +22,7 @@ public class UIScript : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-        //Setting the values of the above variables.
+        //Assign all of the UI elements to their object.
         ammoText = GameObject.Find("AmmoText").GetComponent<UnityEngine.UI.Text>();
         timeLeftText = GameObject.Find("TimeLeft").GetComponent<UnityEngine.UI.Text>();
         debugTextUI = GameObject.Find("DebugText").GetComponent<UnityEngine.UI.Text>();
@@ -29,12 +32,12 @@ public class UIScript : NetworkBehaviour {
         ability2Text = GameObject.Find("AbilityText2").GetComponent<UnityEngine.UI.Text>();
         gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
         healthText = GameObject.Find("HealthText").GetComponent<UnityEngine.UI.Text>();
-
         scoreText = GameObject.Find("ScoreText").GetComponent<UnityEngine.UI.Text>();
         topPlayerText = GameObject.Find("TopPlayerText").GetComponent<UnityEngine.UI.Text>();
-
     }
 
+    //Functions for updating the UI elements.
+    //They are called from other classes.
     public void updateTime(float timeLeft)
     {
         timeLeftText.text = "Time Left: " + Mathf.Floor(timeLeft);
@@ -63,12 +66,12 @@ public class UIScript : NetworkBehaviour {
     {
         ability2Image.sprite = sp;
     }
-
+    //Ability 1 cooldown time.
     public void updateAbility1Cooldown(float cooldown)
     {
         ability1Text.text = (Mathf.Ceil(cooldown * 10) / 10).ToString();
     }
-
+    //Ability 2 cooldown time.
     public void updateAbility2Cooldown(float cooldown)
     {
         ability2Text.text = (Mathf.Ceil(cooldown * 10) / 10).ToString();

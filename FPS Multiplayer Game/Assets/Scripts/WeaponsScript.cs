@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class WeaponsScript : NetworkBehaviour {
+
+    //This class provides the behaviour for each weapon object.
+
     double lastFired = 0;
     double time;
     public GameObject mainBullet;
@@ -100,7 +103,8 @@ public class WeaponsScript : NetworkBehaviour {
 
 public class Weapon
 {
-   
+    //This is a tempalte class for creating different weapons.
+    //Each character object has one weapon object.
     public string name { get; set; }
     public int ammoMax { get; set; }
     public int ammoCurrent { get; set; }

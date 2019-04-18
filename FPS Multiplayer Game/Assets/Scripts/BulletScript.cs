@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class BulletScript : NetworkBehaviour
 {
+    //This class handles collision detection for bullets.
+
     [SyncVar]
     public uint shotBy;
     [SerializeField]

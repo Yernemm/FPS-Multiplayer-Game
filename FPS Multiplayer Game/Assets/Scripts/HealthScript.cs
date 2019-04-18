@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class HealthScript : NetworkBehaviour
 {
+    //This class keeps track of player health.
+    
     [SerializeField]
     Collider bodyCollider;
     [SerializeField]

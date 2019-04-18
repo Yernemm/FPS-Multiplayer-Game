@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SelfKill : MonoBehaviour {
 
+    //Any object that this script is placed on will destroy itself after a set amount of time.
+
     public float lifeTime;
 
 	// Use this for initialization

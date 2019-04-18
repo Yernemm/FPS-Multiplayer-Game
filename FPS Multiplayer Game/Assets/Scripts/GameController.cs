@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class GameController : NetworkBehaviour {
-
+    
+    //This class provides the basic funtionality used to run the match, including keeping the score, time and end of game procedure.
 
     //SyncVar synchronises the state of the variable between the server and the clients.
     [SyncVar]
@@ -16,13 +17,16 @@ public class GameController : NetworkBehaviour {
     
     public Dictionary<uint, int> playerScores;
 
+    //Score needed to win the match.
     public const int maxScore = 40000;
+    //Functions allow other scripts to get the value of the max score.
     public int getMaxScore()
     {
         return maxScore;
     }
    
-    
+    //Text displayed on the screen if debug mode is enabled.
+    //Displays additional information, not in the final game.
     public string debugText = "";
     public void addDebugText(string t)
     {
@@ -31,38 +35,48 @@ public class GameController : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        timeLeft = 600;
-
+        timeLeft = 600; //The match is 10 minutes long at most.
+        //Generic code for setting up the networked match.
         NetworkClient myClient;
         myClient = new NetworkClient();
         myClient.RegisterHandler(MsgType.Connect, OnConnected);
         myClient.Connect("127.0.0.1", 4444);
         //Initialise dictionary.
+        //Dictionary used to keep a scoreboard of the player scores.
         playerScores = new Dictionary<uint, int>();
 
     }
 	
 	// Update is called once per frame
 	void Update () {
+        //Time variables updated to keep the match timer.
+        //Time.deltaTime is the time elapsed since the previous instance this was called.
         time += Time.deltaTime;
         timeLeft -= Time.deltaTime;
+        //Only run the code below on the server.
         if (isServer)
         {
+            //If the time runs out, end the game.
             if (timeLeft <= 0)
                 CmdEndGame();
         }
         
     }
+
+    //LateUpdate is run after all of the update functions on all scripts are finished.
+    //Debug text is reset.
     private void LateUpdate()
     {
         debugText = "";
     }
 
+    //Display a debug console message when the player connects to a server.
     public void OnConnected(NetworkMessage netMsg)
     {
         Debug.Log("Connected to server");
     }
 
+    //Function which returns a player object based on their unique player ID.
     //Searches all game object to find a matching player.
     public GameObject getPlayerById(uint id)
     {
@@ -146,12 +160,15 @@ public class GameController : NetworkBehaviour {
         }
     }
 
+    //Debug function for testing the win conditions.
     [ClientRpc]
     void RpcDebugWin(string winner)
     {
         Debug.Log("Winner is " + winner);
     }
 
+    //This function is called when the time ends or a player reaches the max score.
+    //It ends the match for all players and sends out the leaderboard values.
     [Command]
     void CmdEndGame()
     {
@@ -159,20 +176,25 @@ public class GameController : NetworkBehaviour {
         RpcEndTheGameProcedure(leaderboad);
     }
 
+    //When the client receives the end match signal, it runs the end of match procedure.
     [ClientRpc]
     void RpcEndTheGameProcedure(string leaderboardText)
     {
+        //Display the leaderboard screen and disconnect the player from the match.
         var gameInfo = GameObject.Find("Network Manager").GetComponent<EndOfGameInfo>();
         gameInfo.leaderboardText = leaderboardText;
         gameInfo.gameEnded = true;
         NetworkManager.singleton.StopClient();
     }
 
+    //Function generates the leaderboard text based on the player scores.
+    //Uses similar logic to getTopPlayer() but instead of returning the player, it sorts all the players.
     string generateLeaderboard()
     {
         Dictionary<uint, int> playersCopy = playerScores;
         string leaderText = "";
         int counter = 1;
+        //While loop sorts and ranks the players by their score from highest to lowest.
         while (playersCopy.Count > 0) {
             int maxScore = -2147483648;
             uint maxId = 0;

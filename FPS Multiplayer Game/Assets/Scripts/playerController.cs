@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class playerController : NetworkBehaviour {
+    //This class handles basic player input and basic movement.
+
     //Public float which controls the move speed.
     //It is public so it can be edited from Unity itself.
     float moveSpeed; 

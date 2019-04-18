@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    //This class detects how the player is moving and handles playing the correct movement animations.
+
     //Get animator component.
     [SerializeField]
     Animator anim;
 
     //Get all animations.
+    //Each animation is fetched by its name as a string.
     const string animIdle = "Idle";
     const string animWalk = "Walk";
     const string animWalkBack = "WalkBack";

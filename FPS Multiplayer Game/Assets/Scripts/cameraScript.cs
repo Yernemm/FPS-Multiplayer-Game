@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class cameraScript : MonoBehaviour {
 
+    //This class handles camera movement.
     
     //Player rigid body will be set in Unity.
-   // public Rigidbody player;
-    Vector3 posOffset;
     [SerializeField]
     GameObject player;
     UIScript ui;    
@@ -15,27 +14,14 @@ public class cameraScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ui = player.GetComponent<UIScript>();
-       Cursor.lockState = CursorLockMode.Locked;
-       
-   
-        posOffset = new Vector3(0, 1, 0);
-
-     
-        if (!player.GetComponent<playerController>().localPlayer)
-        {
-            foreach (Transform g in player.transform)
-            {
-
-              
-            }
-        }
+        //Lock the cursor.
+        //This makes the cursor invisible and locks it to the centre of the screen.
+       Cursor.lockState = CursorLockMode.Locked;  
     }
 
 	// Update is called once per frame
 	void Update () {
-
-
-
+        //If left mouse button clicked, shoot with the waeapon and update the ammo counter.
         if (Input.GetMouseButton(0))
         {
             Character ch = player.GetComponent<playerController>().currentCharacter;

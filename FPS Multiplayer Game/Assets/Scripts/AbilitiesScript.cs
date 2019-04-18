@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class AbilitiesScript : NetworkBehaviour {
 
+    //This class provides the behaviour for the abilities.
+
     [SerializeField]
     GameObject cameraObject;
 

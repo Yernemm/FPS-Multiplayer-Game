@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class CharactersScript : NetworkBehaviour
 {
+    //This class provides the behaviour for each character object.
 
     WeaponsScript wp;
     AbilitiesScript ab;
@@ -95,6 +96,7 @@ public class CharactersScript : NetworkBehaviour
 
 public class Character
 {
+    //This class acts as a template for creating different characters that a player can play as.
     public string name { get; set; }
     public float moveSpeed { get; set; }
     public float jumpForce { get; set; }

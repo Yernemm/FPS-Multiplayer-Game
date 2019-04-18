@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class MainMenuScript : NetworkBehaviour {
+
+    //This class handles the I/O for the main menu and the logic for connecting to a match.
+
     //Get all the input fields.
     public Button btnHost;
     public Button btnJoin;
