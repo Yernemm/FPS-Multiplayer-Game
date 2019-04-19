@@ -15,40 +15,39 @@ public class AbilitiesScript : NetworkBehaviour {
 
     
 
-
+    //Function for using the dash ability.
+    //return true if used.
     public bool useDash(Rigidbody rb) {
         Debug.Log("using");
         Camera camera = cameraObject.GetComponent<Camera>();
         Vector3 initVelocity = rb.velocity;
-        initVelocity += camera.transform.forward * 20f;
+        initVelocity += camera.transform.forward * 20f; //dash forward
         Debug.Log(initVelocity);
         rb.velocity = initVelocity;
-
+        //Play camera zoom animation.
         Animator anim = cameraObject.GetComponent<Animator>();
         anim.Play("CameraDashAbility", 0, 0);
-        return false;
+        return true;
     }
-
+    //Define the dash ability
     public Ability dash = new Ability()
     {
         name = "Dash",
         cooldownMax = 5,
        
     };
-
+    //set the basic properties for dash.
    void Start()
     {
         dash.useDel = useDash;
-        dash.sprite = dashSprite;
-       
-        
+        dash.sprite = dashSprite;         
     }
-
+    //Update the cooldown time for dash.
     private void Update()
     {
         tickCooldown(dash, Time.deltaTime); 
     }
-
+    //Recursive procedure for the cooldown timer.
     void tickCooldown(Ability ab, float timeChange)
     {
         //Subtract the time since the previous frame every frame.
@@ -58,7 +57,7 @@ public class AbilitiesScript : NetworkBehaviour {
             if (ab.cooldownCurrent < 0)
             {
                 ab.cooldownCurrent = 0;
-                //At this point the cooldown is 0. Call itself to fall into the else block below.
+                //At this point the cooldown is 0. Call itself again to fall into the else block below.
                 tickCooldown(ab, 0);
             }
         }
@@ -75,6 +74,8 @@ public class AbilitiesScript : NetworkBehaviour {
 
 public class Ability
 {
+    //This class defines an ability.
+    //Each character can have 2 abilities.
     public string name { get; set; }
     public float cooldownMax { get; set; }
     public float cooldownCurrent { get; set; }
@@ -83,6 +84,7 @@ public class Ability
     public useDelegate useDel;
     public bool use(Rigidbody rb)
     {
+        //Put the ability on cooldown when it is used.
         if (offCooldown)
         {
             useDel(rb);
@@ -95,9 +97,11 @@ public class Ability
             return false;
         }
     }
+    //The image sprite for the ability.
     public Sprite sprite;
     public Ability()
     {
+        //The ability is off cooldown when it is first instantiated.
         cooldownCurrent = 0;
         offCooldown = true;
     }

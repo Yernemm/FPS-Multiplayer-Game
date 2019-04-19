@@ -5,6 +5,7 @@ using TMPro;
 
 public class nameTagScript : MonoBehaviour
 {
+    //This class displays the player name above a player's head.
     [SerializeField]
     TextMeshPro tagtext;
     [SerializeField]

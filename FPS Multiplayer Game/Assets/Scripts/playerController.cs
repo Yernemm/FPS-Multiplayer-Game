@@ -49,13 +49,16 @@ public class playerController : NetworkBehaviour {
         currentCharacter = chars.debug;
         moveSpeed = currentCharacter.moveSpeed;
 
-
+        //Cannot instantiate the icons at the start because it creates a race condition.
+        //The icons are loaded from a different class and can only be instantiated once the other class is loaded.
+        //To solve this, a boolean is used to instantiate the icons on the first frame in the update procedure which runs after start.
         iconsInitiated = false;
 
 
-        playerId = GetComponent<NetworkIdentity>().netId.Value;
+        playerId = GetComponent<NetworkIdentity>().netId.Value; //Give the player a unique ID based on their network object ID.
         if (!isLocalPlayer)
         {
+            //Disable the player camera if this is not the local player.
             playerCamera.SetActive(false);
             return;
         }
@@ -73,7 +76,7 @@ public class playerController : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
 
-        //Initiate ability icons
+        //Initiate ability icons once.
         if (!iconsInitiated)
         {
             ui.setAbility1Sprite(currentCharacter.ability1.sprite);
@@ -108,13 +111,20 @@ public class playerController : NetworkBehaviour {
             x += moveSpeed * Time.deltaTime;
         if (Input.GetKey("a"))
             x -= moveSpeed * Time.deltaTime;
-
+        
+        //Calculate a translation vector to where the player is moved next.
         Vector3 translation = new Vector3(x, 0, z);
+        //Move the player by the calculated vector.
+
+        //ClampMagnitude is used to ensure that the magnitude of the movement when adding two
+        //direction vectors remains constant.
         transform.Translate(Vector3.ClampMagnitude(translation, moveSpeed * Time.deltaTime));
+        //Change from a local direction vector to a world direction vector.
         Vector3 worldDirection = transform.TransformDirection(new Vector3(x,0,z ));
 
 
         //Abilities
+        //Only use ability if it is not on cooldown.
         if (Input.GetKeyDown("q") && currentCharacter.ability1.offCooldown)
         {
             currentCharacter.ability1.use(rb);
@@ -149,6 +159,7 @@ public class playerController : NetworkBehaviour {
         rb.velocity = new Vector3(worldDirection.x + rb.velocity.x, rb.velocity.y + jumpV, worldDirection.z + rb.velocity.z);
 
         //Info and cheats for development purposes.
+        //debugMode is disabled for the final release.
         if (debugMode)
         {
             if (Input.GetKeyDown("p"))
@@ -186,17 +197,20 @@ public class playerController : NetworkBehaviour {
         }
         }
 
+    //FixedUpdate always runs at the same interval, regardless of framerate.
     private void FixedUpdate()
     {
         if (!isLocalPlayer)
             return;
+        //Add a drag force to simulate air resistance.
+        //Multiply the player's velocity by 0.95 each interval.
         float dragMultiplier = 0.95f;
         Vector3 velocity = rb.velocity;
         velocity.x *= dragMultiplier;
         velocity.z *= dragMultiplier;
         rb.velocity = velocity;
     }
-
+    //Damage has been moved to the characters script.
     public void damage(int amount)
     {
         currentCharacter.damage(amount);
@@ -206,7 +220,7 @@ public class playerController : NetworkBehaviour {
     {
 
     }
-
+    //Set the isReloading property of the player to false.
     public void reloadFinished()
     {
         currentCharacter.weapon.isReloading = false;

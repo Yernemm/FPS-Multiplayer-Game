@@ -18,17 +18,17 @@ public class BulletScript : NetworkBehaviour
 
     private GameController gc;
 
-        private void Start()
+    private void Start()
     {
         gc = GameObject.Find("Game Controller").GetComponent<GameController>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Only do collision detection on the server.
         if (!isServer)
             return;
-
-        //Debug.Log("Bullet collided with " + collision.collider);
+        //Ignore collisions with the player that shot the bullet.
         if (collision.collider.gameObject.tag == "Player")
             if(collision.collider.gameObject.GetComponent<playerController>().playerId == shotBy)
             return;
@@ -38,12 +38,11 @@ public class BulletScript : NetworkBehaviour
 
             if (collision.collider.gameObject.GetComponent<playerController>().playerId != shotBy)
             {
-                //Debug.Log("Player " + collision.collider.gameObject.GetComponent<playerController>().playerId + " has been shot by Player " + shotBy);
-                //collision.collider.gameObject.GetComponent<playerController>().damage(damage);
-                collision.collider.gameObject.GetComponent<HealthScript>().RpcHit(damage);
+                //If colliding with a player.
+                collision.collider.gameObject.GetComponent<HealthScript>().RpcHit(damage); //Deal damage
                 GameObject shooter = gc.getPlayerById(shotBy);
-                shooter.GetComponent<HealthScript>().RpcChangeScore(damage);
-                CmdSpawnPlayerParticles(transform.position);
+                shooter.GetComponent<HealthScript>().RpcChangeScore(damage); //Give shooter points
+                CmdSpawnPlayerParticles(transform.position); //Spawn player impact particles
                 if(collision.collider.gameObject.GetComponent<playerController>().currentCharacter.healthCurrent - damage <= 0)
                 {
                     //If the bullet will kill the player, give the shooter 1000 points.
@@ -53,14 +52,16 @@ public class BulletScript : NetworkBehaviour
         }
         else
         {
+            //If colliding with something that is not a player, create normal impact particles
             CmdSpawnParticles(transform.position);
         }
        
-            
+            //Destroy bullet on collision     
             Destroy(gameObject);
         
     }
 
+    //Commands to spawn particles server-side
     [Command]
     void CmdSpawnParticles(Vector3 postion)
     {

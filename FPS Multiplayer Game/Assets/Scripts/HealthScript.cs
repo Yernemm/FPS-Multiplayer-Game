@@ -14,23 +14,19 @@ public class HealthScript : NetworkBehaviour
     [SerializeField]
     playerController pl;
 
-
+    //Collision detection for development purposes.
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collision detected with " + collision.collider.gameObject.name + "  Tag: " + collision.collider.gameObject.tag);
-        if(collision.collider.gameObject.tag == "Bullet" &&
-            GetComponent<playerController>().playerId != collision.collider.gameObject.GetComponent<BulletScript>().shotBy)
-        {
 
-            
-            
-        }
     }
 
     //Procedure forced to run client-side.
+    //Collisions are detected server-side but the health must be updated locally.
     [ClientRpc]
     public void RpcHit(int damageToDeal)
     {
+        //Deal damage when a bullet hits a player.
         Debug.Log(GetComponent<playerController>().playerId + ") Collision with bullet with " + damageToDeal);
         pl.currentCharacter.damage(damageToDeal);
      
@@ -46,14 +42,13 @@ public class HealthScript : NetworkBehaviour
         GetComponent<playerController>().currentCharacter.changeScore(score);
     }
 
-    
 
+    //Collision detection for development purposes.
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Bullet")
         {
             Debug.Log("Trigger with bullet");
-            //pl.currentCharacter.damage(other.GetComponent<BulletScript>().damage);
         }
     }
 
